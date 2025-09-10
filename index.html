@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="Kwaipilot,KwaiPilot,KuaishouAI,Kuaishou,Kwaipilot,Open Agentic Intelligence,">
+    <meta name="description" content="Kwaipilot is our latest Mixture-of-Experts model with 32 billion activated parameters and 1 trillion total parameters. It achieves state-of-the-art performance in frontier knowledge, math, and coding among non-thinking models.">
+    <link rel="shortcut icon" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <title>Kwaipilot: Open Agentic Intelligence</title>
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #161717;
+            --text-primary: #ffffff;
+            --text-secondary: #b8bfc6;
+            --text-tertiary: #808189;
+            --accent-blue: #1a88ff;
+            --accent-blue-hover: #288fff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid #262728;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+        }
+
+        .logo {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .nav-tabs {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 4px;
+            display: flex;
+            gap: 4px;
+        }
+
+        .nav-tab {
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .nav-tab:hover {
+            color: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-tab.active {
+            color: #333;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0 120px;
+            text-align: center;
+            background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+        }
+
+        .hero-title {
+            font-size: 72px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #fff 0%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 24px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-description {
+            font-size: 18px;
+            color: var(--text-tertiary);
+            margin-bottom: 48px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 60px;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--accent-blue);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-blue-hover);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--accent-blue);
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+
+        /* Features */
+        .features {
+            padding: 120px 0;
+        }
+
+        .section-title {
+            font-size: 48px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: var(--accent-blue);
+            background: rgba(26, 136, 255, 0.05);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--accent-blue);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .feature-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .feature-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Performance */
+        .performance {
+            padding: 120px 0;
+            background: rgba(255, 255, 255, 0.01);
+        }
+
+        .performance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 60px;
+        }
+
+        .performance-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .performance-score {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--accent-blue);
+            margin-bottom: 8px;
+        }
+
+        .performance-label {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .performance-description {
+            font-size: 14px;
+            color: var(--text-tertiary);
+        }
+
+        /* FAQ */
+        .faq {
+            padding: 120px 0;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.02);
+            border: none;
+            padding: 20px;
+            text-align: left;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .faq-answer {
+            padding: 20px;
+            color: var(--text-secondary);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: none;
+        }
+
+        .faq-answer.show {
+            display: block;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-link:hover {
+            color: var(--text-primary);
+        }
+
+        .copyright {
+            color: var(--text-tertiary);
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 48px;
+            }
+            
+            .hero-subtitle {
+                font-size: 20px;
+            }
+            
+            .section-title {
+                font-size: 36px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav {
+                flex-direction: column;
+                gap: 16px;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 36px;
+            }
+            
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <nav class="nav">
+                    <div class="logo">Kwaipilot</div>
+                    <div class="nav-tabs">
+                        <div class="nav-tab active">Overview</div>
+                        <div class="nav-tab">Features</div>
+                        <div class="nav-tab">Performance</div>
+                        <div class="nav-tab">FAQ</div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1 class="hero-title">Kwaipilot</h1>
+                <p class="hero-subtitle">Open Agentic Intelligence</p>
+                <p class="hero-description">
+                    Kwaipilot is our latest Mixture-of-Experts model with 32 billion activated parameters and 1 trillion total parameters. It achieves state-of-the-art performance in frontier knowledge, math, and coding among non-thinking models.
+                </p>
+                
+                <div class="cta-buttons">
+                    <a href="https://github.com/kuaishou/kwaipilot" class="btn btn-primary">GitHub</a>
+                    <a href="https://huggingface.co/kuaishou/kwaipilot" class="btn btn-secondary">Hugging Face</a>
+                </div>
+
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-number">1T</div>
+                        <div class="stat-label">Total Parameters</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">32B</div>
+                        <div class="stat-label">Active Parameters</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">128K</div>
+                        <div class="stat-label">Context Length</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">384</div>
+                        <div class="stat-label">Experts</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="container">
+                <h2 class="section-title">Key Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3 class="feature-title">Mixture of Experts</h3>
+                        <p class="feature-description">
+                            Our MoE architecture uses 384 experts with 8 selected per token, providing 1T parameter capacity while activating only 32B parameters per inference.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💻</div>
+                        <h3 class="feature-title">Excellent Coding</h3>
+                        <p class="feature-description">
+                            Achieves 53.7% on LiveCodeBench and 65.8% on SWE-bench Verified, outperforming many larger proprietary models in coding tasks.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🤖</div>
+                        <h3 class="feature-title">Agentic Intelligence</h3>
+                        <p class="feature-description">
+                            Designed for agentic use cases with excellent performance in tool calling and complex reasoning tasks.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔓</div>
+                        <h3 class="feature-title">Fully Open Source</h3>
+                        <p class="feature-description">
+                            Released under Modified MIT License, allowing unrestricted commercial use and modification.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🚀</div>
+                        <h3 class="feature-title">Multi-Engine Support</h3>
+                        <p class="feature-description">
+                            Supports vLLM, SGLang, KTransformers, and TensorRT-LLM with comprehensive deployment guides.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3 class="feature-title">State-of-the-Art Performance</h3>
+                        <p class="feature-description">
+                            Achieves 76.5% on AceBench, demonstrating superior performance across multiple benchmarks.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Performance Section -->
+        <section class="performance">
+            <div class="container">
+                <h2 class="section-title">Performance Benchmarks</h2>
+                <div class="performance-grid">
+                    <div class="performance-card">
+                        <div class="performance-score">53.7%</div>
+                        <div class="performance-label">LiveCodeBench</div>
+                        <div class="performance-description">Real-time coding capability evaluation</div>
+                    </div>
+                    <div class="performance-card">
+                        <div class="performance-score">65.8%</div>
+                        <div class="performance-label">SWE-bench Verified</div>
+                        <div class="performance-description">Software engineering task solving</div>
+                    </div>
+                    <div class="performance-card">
+                        <div class="performance-score">76.5%</div>
+                        <div class="performance-label">AceBench</div>
+                        <div class="performance-description">Comprehensive capability assessment</div>
+                    </div>
+                    <div class="performance-card">
+                        <div class="performance-score">8x</div>
+                        <div class="performance-label">Efficiency</div>
+                        <div class="performance-description">Compared to full parameter models</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq">
+            <div class="container">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <button class="faq-question">How is Kwaipilot different from other AI models?</button>
+                        <div class="faq-answer">
+                            Kwaipilot is a 1 trillion parameter MoE model with 32 billion active parameters, specifically designed for agentic intelligence. It excels in coding, tool calling, and complex reasoning while being fully open source under Modified MIT License.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">How does the Mixture of Experts (MoE) architecture work?</button>
+                        <div class="faq-answer">
+                            Our MoE architecture uses 384 experts with 8 selected per token, providing 1 trillion parameter capacity while activating only 32 billion parameters per inference. This achieves excellent performance with efficient resource utilization.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">What inference engines are supported for deployment?</button>
+                        <div class="faq-answer">
+                            Kwaipilot supports vLLM, SGLang, KTransformers, and TensorRT-LLM. We provide comprehensive deployment guides and examples for each engine to ensure optimal performance in your environment.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">How does Kwaipilot perform compared to proprietary models?</button>
+                        <div class="faq-answer">
+                            Kwaipilot achieves 53.7% on LiveCodeBench, 65.8% on SWE-bench Verified, and 76.5% on AceBench, often outperforming many larger proprietary models in coding and reasoning tasks.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">Is Kwaipilot suitable for commercial use?</button>
+                        <div class="faq-answer">
+                            Yes! Kwaipilot is released under Modified MIT License, allowing unrestricted commercial use. You can deploy it in production, modify it, and integrate it into your products freely.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">What are the system requirements for running Kwaipilot?</button>
+                        <div class="faq-answer">
+                            Due to its 1 trillion parameter size, Kwaipilot requires substantial GPU memory. Specific requirements depend on your chosen inference engine and quantization settings. Please refer to our deployment guides for detailed specifications.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-links">
+                    <a href="https://kuaishou.com" class="footer-link">Kuaishou</a>
+                    <a href="https://github.com/kuaishou" class="footer-link">GitHub</a>
+                    <a href="#" class="footer-link">Documentation</a>
+                    <a href="#" class="footer-link">Community</a>
+                    <a href="#" class="footer-link">Contact</a>
+                </div>
+                <div class="copyright">© 2025 Kuaishou Technology. All rights reserved.</div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // FAQ functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const isOpen = answer.classList.contains('show');
+                
+                // Close all other FAQs
+                document.querySelectorAll('.faq-answer').forEach(a => {
+                    a.classList.remove('show');
+                });
+                
+                // Toggle current FAQ
+                if (!isOpen) {
+                    answer.classList.add('show');
+                }
+            });
+        });
+
+        // Nav tabs functionality
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+            });
+        });
+
+        // Smooth scrolling for any anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
