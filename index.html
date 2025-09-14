@@ -21,6 +21,9 @@
             --text-tertiary: #808189;
             --accent-blue: #1a88ff;
             --accent-blue-hover: #288fff;
+            --border-color: #262728;
+            --border-radius: 8px;
+            --transition: all 0.2s ease;
         }
 
         * {
@@ -30,8 +33,7 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-                "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
@@ -47,7 +49,7 @@
         /* Header */
         .header {
             background: var(--bg-secondary);
-            border-bottom: 1px solid #262728;
+            border-bottom: 1px solid var(--border-color);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -66,11 +68,12 @@
             color: var(--text-primary);
             display: flex;
             align-items: center;
+            gap: 8px;
         }
 
         .nav-tabs {
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
+            border-radius: var(--border-radius);
             padding: 4px;
             display: flex;
             gap: 4px;
@@ -83,7 +86,10 @@
             font-weight: 500;
             color: rgba(255, 255, 255, 0.7);
             cursor: pointer;
-            transition: all 0.2s;
+            transition: var(--transition);
+            border: none;
+            background: none;
+            font-family: inherit;
         }
 
         .nav-tab:hover {
@@ -98,86 +104,514 @@
 
         /* Hero Section */
         .hero {
-            padding: 80px 0 120px;
+            padding: 50px 0;
             text-align: center;
-            background: linear-gradient(180deg,
-                    var(--bg-secondary) 0%,
-                    var(--bg-primary) 100%);
+        }
+
+        .hero .hero-description {
+            text-align: left;
         }
 
         .hero-title {
-            font-size: 72px;
+            font-size: clamp(36px, 6vw, 72px);
             font-weight: 700;
             margin-bottom: 24px;
-            background: linear-gradient(135deg,
-                    #fff 0%,
-                    var(--text-secondary) 100%);
+            background: linear-gradient(135deg, #fff 0%, var(--text-secondary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-wrap: wrap;
+            gap: 16px;
         }
 
         .hero-subtitle {
-            font-size: 24px;
-            color: var(--text-secondary);
-            margin-bottom: 40px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+            font-size: clamp(20px, 4vw, 28px);
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-primary);
         }
 
         .hero-description {
             font-size: 18px;
-            color: var(--text-tertiary);
-            margin-bottom: 48px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            color: var(--text-secondary);
+            margin: 0 auto 32px;
+            max-width: 800px;
+            line-height: 1.6;
+            text-align: left;
+            word-break: normal;
+            overflow-wrap: break-word;
+            hyphens: none;
+        }
+
+        /* Prevent breaking of links and code */
+        .hero-description a,
+        .hero-description code {
+            word-break: keep-all;
+            white-space: nowrap;
+        }
+
+        /* Allow breaking only at natural break points for long URLs */
+        .hero-description a[href^="http"] {
+            word-break: break-all;
+            overflow-wrap: anywhere;
+        }
+
+        /* Code block styling to prevent unwanted word breaking */
+        .code-block {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+            overflow-x: auto;
+        }
+
+        .code-block pre {
+            margin: 0;
+            white-space: pre;
+            overflow-x: auto;
+        }
+
+        .code-block code {
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 14px;
+            line-height: 1.4;
+            color: #e6e6e6;
+            white-space: pre;
+            word-break: keep-all;
+        }
+
+        .hero-description p,
+        p.hero-description {
+            margin-bottom: 24px;
+            text-indent: 2em;
+        }
+
+        .hero-description p:first-child,
+        p.hero-description:first-child {
+            margin-top: 0;
+        }
+
+        .hero-description ul,
+        .hero-description ol {
+            margin-bottom: 24px;
+            padding-left: 24px;
+        }
+
+        .hero-description li {
+            margin-bottom: 8px;
+        }
+
+        .hero-description h3,
+        .hero-description h4 {
+            margin-top: 32px;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .hero-description h3:first-child,
+        .hero-description h4:first-child {
+            margin-top: 0;
+        }
+
+        /* KAT-Dev & KAT-Coder Module Styles */
+        .kat-module {
+            padding: 0;
+            position: relative;
+        }
+
+        .kat-training-section {            
+            border-radius: 12px;
+            padding: 10px 0px;
+        }
+
+        .kat-training-section h3 {
+            color: var(--accent-blue);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .kat-training-section h3::before {
+            content: '🚀';
+            font-size: 1.2em;
+        }
+
+        .kat-tasks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .kat-task-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            transition: var(--transition);
+        }
+
+        .kat-task-card:hover {
+            border-color: rgba(26, 136, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(26, 136, 255, 0.1);
+        }
+
+        .kat-task-card h4 {
+            color: var(--accent-blue);
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+
+        /* Agentic RL Scaling Module Styles */
+        .agentic-rl-module {
+            padding: 0;
+            position: relative;
+        }
+
+        .agentic-rl-section {            
+            border-radius: 12px;
+            padding: 10px 0px;
+        }
+
+        .agentic-rl-section h3 {
+            color: var(--accent-blue);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .agentic-rl-section h3::before {
+            content: '⚡';
+            font-size: 1.2em;
+        }
+
+        /* Code with KAT-Dev Module Styles */
+        .code-module {
+            padding: 0;
+            position: relative;
+        }
+
+        .code-section {            
+            border-radius: 12px;
+            padding: 10px 0px;
+        }
+
+        .code-section h3 {
+            color: var(--accent-blue);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .code-section h3::before {
+            content: '💻';
+            font-size: 1.2em;
+        }
+
+        .code-section .code-block {
+            margin: 20px 0;
+        }
+
+        /* Emergent Behaviors Module Styles */
+        .emergent-module {
+            padding: 0;
+            position: relative;
+        }
+
+        .emergent-section {            
+            border-radius: 12px;
+            padding: 20px 0px;
+        }
+
+        .emergent-section h3 {
+            color: var(--accent-blue);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .emergent-section h3::before {
+            content: '🚀';
+            font-size: 1.2em;
+        }
+
+        .behavior-card {
+            background: rgba(255, 255, 255, 0.05);            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 16px 0;
+            transition: var(--transition);
+        }
+
+        .behavior-card:hover {
+            border-color: rgba(26, 136, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(26, 136, 255, 0.1);
+        }
+
+        .behavior-card h4 {
+            color: var(--accent-blue);
+            margin-bottom: 12px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .behavior-card .metric {
+            background: rgba(26, 136, 255, 0.2);
+            color: var(--accent-blue);
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* Future Work Module Styles */
+        .future-module {
+            padding: 0;
+            position: relative;
+        }
+
+        .future-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .future-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 24px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .future-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-blue), #32f3f3);
+        }
+
+        .future-card:hover {
+            border-color: rgba(26, 136, 255, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 35px rgba(26, 136, 255, 0.15);
+        }
+
+        .future-card h4 {
+            color: var(--accent-blue);
+            margin-bottom: 12px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .future-card .icon {
+            font-size: 1.5em;
+        }
+
+        .reference-section {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .reference-section h4 {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* User Cases Tab Module Styles */
+        .cases-module {
+            padding: 0;
+            position: relative;
+        }
+
+        .cases-tabs {
+            display: flex;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 30px;
+            overflow-x: auto;
+        }
+
+        .cases-tab {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 16px;
+            font-weight: 500;
+            padding: 15px 25px;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+            position: relative;
+            min-width: 120px;
+        }
+
+        .cases-tab:hover {
+            color: var(--accent-blue);
+        }
+
+        .cases-tab.active {
+            color: var(--accent-blue);
+        }
+
+        .cases-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--accent-blue);
+        }
+
+        .cases-content {
+            position: relative;
+            min-height: 500px;
+        }
+
+        .case-panel {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .case-panel.active {
+            display: block;
+        }
+
+        .case-panel iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            background: #000;
+        }
+
+        .case-panel .case-image {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .case-panel .case-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            background: white;
+            padding: 20px;
+        }
+
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive design for tabs */
+        @media (max-width: 768px) {
+            .cases-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .cases-tab {
+                flex: 1;
+                min-width: auto;
+                text-align: center;
+            }
+            
+            .case-panel iframe {
+                height: 400px;
+            }
+        }
+
+        .kat-task-card ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .kat-task-card li {
+            margin-bottom: 6px;
+            font-size: 14px;
+            line-height: 1.4;
         }
 
         .cta-buttons {
             display: flex;
             justify-content: center;
             gap: 16px;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
         }
 
         .btn {
             padding: 14px 28px;
-            border-radius: 8px;
+            border-radius: var(--border-radius);
             font-size: 16px;
             font-weight: 600;
             text-decoration: none;
-            transition: all 0.2s;
-            border: none;
+            transition: var(--transition);
+            border: 1px solid transparent;
             cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .btn-primary {
             background: var(--accent-blue);
             color: white;
+            border-color: var(--accent-blue);
         }
 
         .btn-primary:hover {
             background: var(--accent-blue-hover);
+            border-color: var(--accent-blue-hover);
+            transform: translateY(-2px);
         }
 
         .btn-secondary {
             background: transparent;
             color: var(--text-primary);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
         .btn-secondary:hover {
             background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
         }
 
         /* Benchmark Charts */
         .benchmark-section {
-            margin-top: 80px;
+            margin-top: 50px;
         }
 
         .benchmark-title {
@@ -192,8 +626,9 @@
             display: grid;
             grid-template-columns: 1fr;
             gap: 60px;
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
+            overflow-x: auto;
         }
 
         .chart-wrapper {
@@ -201,6 +636,14 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 16px;
             padding: 32px;
+            transition: var(--transition);
+            width: 100%;
+            min-width: 1000px;
+        }
+
+        .chart-wrapper:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
         }
 
         .chart-title {
@@ -249,14 +692,14 @@
         .bar {
             width: 60px;
             min-height: 20px;
-            border-radius: 8px 8px 0 0;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
             position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
             padding-top: 8px;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             cursor: pointer;
         }
 
@@ -320,8 +763,7 @@
         .scatter-chart-container {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 40px 20px;
-            overflow-x: auto;
+            padding: 40px 0px;
         }
 
         .scatter-chart {
@@ -333,6 +775,11 @@
             border-radius: 12px;
             padding: 60px 200px 80px 120px;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        .scatter-chart:hover {
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
         .scatter-chart-title {
@@ -370,7 +817,7 @@
             height: 12px;
             border-radius: 50%;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: var(--transition);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -668,36 +1115,37 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero-title {
-                font-size: 48px;
+            .container {
+                padding: 0 16px;
             }
             
-            .hero-subtitle {
-                font-size: 20px;
-            }
-            
-            .section-title {
-                font-size: 36px;
+            .hero {
+                padding: 40px 0;
             }
             
             .cta-buttons {
                 flex-direction: column;
                 align-items: center;
+                gap: 12px;
             }
             
             .nav {
                 flex-direction: column;
                 gap: 16px;
+                padding: 12px 0;
             }
             
-            .footer-links {
-                flex-direction: column;
-                gap: 16px;
+            .nav-tabs {
+                order: -1;
             }
-
+            
             .charts-container {
                 grid-template-columns: 1fr;
                 gap: 40px;
+            }
+
+            .chart-wrapper {
+                padding: 24px 16px;
             }
 
             .bar-container {
@@ -711,7 +1159,32 @@
             .model-name {
                 font-size: 10px;
                 max-width: 70px;
-                white-space: nowrap;
+            }
+
+            .scatter-chart {
+                padding: 40px 100px 60px 80px;
+            }
+
+            .hero-description ul, .hero-description ol {
+                padding-left: 20px;
+            }
+
+            .kat-module {
+                padding: 0;
+            }
+
+            .kat-training-section {
+                padding: 16px;
+                margin: 20px 0;
+            }
+
+            .kat-tasks-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .kat-task-card {
+                padding: 16px;
             }
         }
 
@@ -814,17 +1287,18 @@
                         KAT-Coder
                     </div>
                     <div class="nav-tabs">
-                        <div class="nav-tab active">Overview</div>
-                        <div class="nav-tab">Features</div>
-                        <div class="nav-tab">Performance</div>
-                        <div class="nav-tab">FAQ</div>
+                        <button class="nav-tab active" data-target="overview">Overview</button>
+                        <button class="nav-tab" data-target="features">Features</button>
+                        <button class="nav-tab" data-target="performance">Performance</button>
+                        <button class="nav-tab" data-target="cases">Cases</button>
                     </div>
                 </nav>
             </div>
         </header>
 
+
         <!-- Hero Section -->
-        <section class="hero">
+        <section class="hero" id="overview">
             <div class="container">
                 <h1 class="hero-title">
                     <svg width="64" height="64" viewBox="0 0 69 68" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -857,23 +1331,21 @@
                             </clipPath>
                         </defs>
                     </svg>
-                    KAT-Coder
+                    KAT-Dev-32B, KAT-Coder
                 </h1>
-                <p class="hero-subtitle">Open Agentic Intelligence</p>
+                <p class="hero-subtitle">Highlights</p>
                 <p class="hero-description">
-                    KAT-Coder is our latest Mixture-of-Experts model with 32 billion
-                    activated parameters and 1 trillion total parameters. It achieves
-                    state-of-the-art performance in frontier knowledge, math, and coding
-                    among non-thinking models.
+                    Today, we're thrilled to announce two groundbreaking models in our KAT series: KAT-Dev and KAT-Coder — representing accessible excellence and ultimate performance in code intelligence. We are excited to introduce KAT-Dev - our new open-source 32B-parameter model for software engineering tasks. Among all open-source models with different scales, KAT-Dev achieves comparable performance and ranks 3rd on SWE-Bench Verified with 65.0% resloved. Meanwhile, the most powerful variant: KAT-Coder, achieves 72.1% performance and resets a new state-of-the-art result on SWE-Bench Verified.
                 </p>
-                
+
+                <!-- Git -->
                 <div class="cta-buttons">
                     <a href="https://github.com/kuaishou/KAT-Coder" class="btn btn-primary">GitHub</a>
                     <a href="https://huggingface.co/kuaishou/KAT-Coder" class="btn btn-secondary">Hugging Face</a>
                 </div>
 
                 <!-- Benchmark Charts -->
-                <div class="benchmark-section">
+                <div class="benchmark-section" id="performance">
                     <h3 class="benchmark-title">Agentic and Competitive Coding</h3>
                     <div class="charts-container">
                         <div class="chart-wrapper">
@@ -997,198 +1469,335 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="container">
+                            <div class="scatter-chart-container">
+                                <div class="scatter-chart">
+                                    <div class="scatter-chart-title">SWE-bench Verified (%)</div>
+                                    <div class="scatter-chart-subtitle">Agentic Performance</div>
+            
+                                    <div class="scatter-plot" id="scatter-plot">
+                                        <!-- Grid lines will be added by JavaScript -->
+                                        <!-- Axis labels -->
+                                        <div class="axis-label x-axis-label">
+                                            Model Size (Billions of Parameters)
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
         </section>
 
-        <!-- Scatter Chart Section -->
-        <section class="benchmark-section">
+        <!-- Key Contributions -->
+        <section class="hero">
             <div class="container">
-                <div class="scatter-chart-container">
-                    <div class="scatter-chart">
-                        <div class="scatter-chart-title">SWE-bench Verified (%)</div>
-                        <div class="scatter-chart-subtitle">Agentic Performance</div>
-
-                        <div class="scatter-plot" id="scatter-plot">
-                            <!-- Grid lines will be added by JavaScript -->
-                            <!-- Axis labels -->
-                            <div class="axis-label x-axis-label">
-                                Model Size (Billions of Parameters)
-                    </div>
-                        </div>
-
-
+                <h2 class="hero-subtitle">Key Contributions</h2>
+                <div class="hero-description">
+                    <p>Our KAT-Dev and KAT-Coder are optimized via several stages of training, including a mid-training stage, supervised fine-tuning (SFT) & reinforcement fine-tuning (RFT) stage and an large-scale agentic reinforcement learning (RL) stage. In summary, our contributions include:</p>
+                    
+                    <p><strong>Mid-Training:</strong> We observe that adding extensive training for tool-use capability, multi-turn interaction, and instruction-following at this stage may not yield large performance gains in the current results (e.g., on leaderboards like SWE-bench), but it will have a significant impact on the subsequent SFT and RL stages.</p>
+                    
+                    <p><strong>SFT & RFT:</strong> We meticulously curated eight task types and eight programming scenarios during the SFT stage to ensure the model's generalization and comprehensive capabilities. Moreover, before RL, we innovatively introduced an RFT stage with "teacher trajectories" annotated by human engineers as guidance during training.</p>
+                    
+                    <p><strong>Agentic RL Scaling:</strong> Scaling agentic RL hinges on three challenges: efficient learning over nonlinear trajectory histories, leveraging intrinsic model signals, and building scalable high-throughput infrastructure. We address these with a multi-level prefix caching mechanism, entropy-based trajectory pruning, and SeamlessFlow architecture.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Features Section -->
-        <section class="features">
+        <!-- Open Access -->
+        <section class="hero">
             <div class="container">
-                <h2 class="section-title">Key Features</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">💻</div>
-                        <h3 class="feature-title">Excellent Coding</h3>
-                        <p class="feature-description">
-                            Achieves 53.7% on LiveCodeBench and 65.8% on SWE-bench Verified,
-                            outperforming many larger proprietary models in coding tasks.
-                        </p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">⚡</div>
-                        <h3 class="feature-title">Mixture of Experts</h3>
-                        <p class="feature-description">
-                            Our MoE architecture uses 384 experts with 8 selected per token,
-                            providing 1T parameter capacity while activating only 32B
-                            parameters per inference.
-                        </p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🤖</div>
-                        <h3 class="feature-title">Agentic Intelligence</h3>
-                        <p class="feature-description">
-                            Designed for agentic use cases with excellent performance in
-                            tool calling and complex reasoning tasks.
-                        </p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🔓</div>
-                        <h3 class="feature-title">Fully Open Source</h3>
-                        <p class="feature-description">
-                            Released under Modified MIT License, allowing unrestricted
-                            commercial use and modification.
-                        </p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🚀</div>
-                        <h3 class="feature-title">Multi-Engine Support</h3>
-                        <p class="feature-description">
-                            Supports vLLM, SGLang, KTransformers, and TensorRT-LLM with
-                            comprehensive deployment guides.
-                        </p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">📊</div>
-                        <h3 class="feature-title">State-of-the-Art Performance</h3>
-                        <p class="feature-description">
-                            Achieves 76.5% on AceBench, demonstrating superior performance
-                            across multiple benchmarks.
-                        </p>
-                    </div>
-                </div>
+                <h2 class="hero-subtitle">Open Access</h2>
+                <p class="hero-description">
+                    KAT-Dev is released to the community for further research and development. You can also get accessed to our strongest variant KAT-Coder by simply requesting an API key on <a href="https://www.anthropic.com/api/access" target="_blank">xxx</a> platform and install Claude Code to start coding, with a detailed technical report coming soon.
+                </p>
             </div>
         </section>
 
-        <!-- Performance Section -->
-        <section class="performance">
+        <!-- KAT-Dev & KAT-Coder -->
+        <section class="hero" id="features">
             <div class="container">
-                <h2 class="section-title">Performance Benchmarks</h2>
-                <div class="performance-grid">
-                    <div class="performance-card">
-                        <div class="performance-score">53.7%</div>
-                        <div class="performance-label">LiveCodeBench</div>
-                        <div class="performance-description">
-                            Real-time coding capability evaluation
+                <div class="kat-module">
+                    <h2 class="hero-subtitle">KAT-Dev & KAT-Coder</h2>
+                    
+                    <div class="hero-description">
+                        <div class="kat-training-section">
+                            <h3>Mid-Training</h3>
+                            <p>We fine-tuned a pretrained model with a two-stage process we call "Mid-Train." In the first stage, we enhanced the model's comprehensive capabilities related to "LLM as an agent," including:</p>
+                            <ul>
+                                <li><strong>Tool-use capability:</strong> Built interaction data for thousands of tools with real executions in sandbox environments</li>
+                                <li><strong>Multi-turn interaction:</strong> Constructed dialogues spanning up to hundreds of turns among humans, assistants, and tools</li>
+                                <li><strong>Coding knowledge injection:</strong> Added high-quality, domain-specific coding knowledge</li>
+                                <li><strong>Git commit/PR data:</strong> Incorporated large volumes of real pull request data from Git repositories</li>
+                                <li><strong>Instruction following:</strong> Collected 30+ categories of common user instructions</li>
+                                <li><strong>General and reasoning data:</strong> Strengthened general-domain capabilities and reasoning</li>
+                            </ul>
                         </div>
-                    </div>
-                    <div class="performance-card">
-                        <div class="performance-score">65.8%</div>
-                        <div class="performance-label">SWE-bench Verified</div>
-                        <div class="performance-description">
-                            Software engineering task solving
-                        </div>
-                    </div>
-                    <div class="performance-card">
-                        <div class="performance-score">76.5%</div>
-                        <div class="performance-label">AceBench</div>
-                        <div class="performance-description">
-                            Comprehensive capability assessment
-                        </div>
-                    </div>
-                    <div class="performance-card">
-                        <div class="performance-score">8x</div>
-                        <div class="performance-label">Efficiency</div>
-                        <div class="performance-description">
-                            Compared to full parameter models
+
+                        <div class="kat-training-section">
+                            <h3>SFT</h3>
+                            <p>In the second stage, we collected real delivery trajectories labeled by human engineers and synthesized extensive trajectory data to enhance end-to-end requirement delivery capabilities.</p>
+                            
+                            <div class="kat-tasks-grid">
+                                <div class="kat-task-card">
+                                    <h4>Eight types of user tasks:</h4>
+                                    <ul>
+                                        <li>Feature Implementation</li>
+                                        <li>Feature Enhancement</li>
+                                        <li>Bug Fixing</li>
+                                        <li>Refactoring</li>
+                                        <li>Performance Optimization</li>
+                                        <li>Test Case Generation</li>
+                                        <li>Code Understanding</li>
+                                        <li>Configuration & Deployment</li>
+                                    </ul>
+                                </div>
+                                <div class="kat-task-card">
+                                    <h4>Eight major programming scenarios:</h4>
+                                    <ul>
+                                        <li>Application Development</li>
+                                        <li>UI/UX Engineering</li>
+                                        <li>Data Science & Engineering</li>
+                                        <li>Machine Learning & AI</li>
+                                        <li>Database Systems</li>
+                                        <li>Infrastructure Development</li>
+                                        <li>Specialized Programming Domains</li>
+                                        <li>Security Engineering</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- FAQ Section -->
-        <section class="faq">
+        <!-- Reinforcement Finetune -->
+        <section class="hero">
             <div class="container">
-                <h2 class="section-title">Frequently Asked Questions</h2>
-                <div class="faq-container">
-                    <div class="faq-item">
-                        <button class="faq-question">
-                            How is KAT-Coder different from other AI models?
-                        </button>
-                        <div class="faq-answer">
-                            KAT-Coder is a 1 trillion parameter MoE model with 32 billion
-                            active parameters, specifically designed for agentic
-                            intelligence. It excels in coding, tool calling, and complex
-                            reasoning while being fully open source under Modified MIT
-                            License.
+                <h2 class="hero-subtitle">Reinforcement Finetune</h2>                
+                <p class="hero-description">
+                    At this stage, building on the reinforcement learning (RL) pipeline, we introduce multiple ground truths to guide trajectory exploration, improving rollout efficiency and thereby enhancing the efficiency and stability of the RL phase. By shifting from absolute rewards to measuring discrepancies from ground truth, we further stabilize the RL stage.
+                </p>
+                <p class="hero-description">
+                    Transitioning from directly assigning absolute rewards to evaluating the relative differences between rollout samples and ground truth provides a more stable and accurate reward signal for RL. Meanwhile, we supervise sample correctness in real time during rollouts and promptly terminate generations that clearly deviate from the ground truth, which also yields higher sample efficiency for RL.
+                </p>
+                <figure style="margin: 40px 0; text-align: center;">
+                    <img src="case-pic/pic-1.png" alt="Reinforcement Finetuning Process" style="max-width: 800px; width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); background: white; padding: 20px;"/> 
+                </figure>
+                
+                <div class="hero-description">
+                    <p>After three training stages, we obtain a cold-start model prepared for RL, and the introduction of Reinforcement Finetuning (RFT) also builds a bridge between SFT and RL.</p>
+                    
+                    <ul>
+                        <li><strong>Mid-Training:</strong> First, we teach the model a variety of basic skills, including how to use tools and how to understand user intent.</li>
+                        <li><strong>SFT:</strong> Then, using high-quality trajectory data, the model learns to perform real downstream tasks.</li>
+                        <li><strong>RFT:</strong> Finally, before the model begins "free exploration," teacher trajectories provide hands-on guidance on how to explore, which also ensures stability in the subsequent RL phase.</li>
+                    </ul>
+                    
+                    <p>Below is how we observed the model's performance change on SWE-Bench Verified:</p>
+                </div>
+                
+                <figure style="margin: 40px 0; text-align: center;">
+                    <img src="case-pic/pic-2.png" alt="SWE-Bench Verified Performance" style="max-width: 800px; width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); background: white; padding: 20px;"/>
+                </figure>
+            </div>
+        </section>
+
+        <!-- Agentic RL Scaling -->
+        <section class="hero">
+            <div class="container">
+                <div class="agentic-rl-module">
+                    <h2 class="hero-subtitle">Agentic RL Scaling</h2>
+                    
+                    <div class="hero-description">
+                        <div class="agentic-rl-section">
+                            <h3>Prefix Caching Inside the Training Engine</h3>
+                            <p>In agentic RL, collecting an agent's full execution trajectories and training on them is crucial for on policy training. However, because agents generate vast, highly branched trajectories with substantial token overlap, naïvely training on all raw traces wastes compute. To improve efficiency, we compress the trajectory corpus into a shared-fragment trajectory prefix tree—and implement prefix caching directly inside the training engine's forward and backward passes. On this basis, we treat each node in the tree as a basic training unit. This effectively avoids redundant computation on repeated trajectory fragments and improves overall training efficiency. Overall, this design improves the computational speed of policy updates by a factor of O(m), where m is the depth of the trajectory tree. The slimmer (i.e., more chain-like) the tree structure, the greater the performance gain. Compared with prefix caching during inference, prefix caching in training requires substantially more memory. To address this, we design a multi-level caching mechanism that pipelines cache reads/writes with computation, thereby overlapping operations and achieving near-zero performance overhead for caching.</p>
                         </div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question">
-                            How does the Mixture of Experts (MoE) architecture work?
-                        </button>
-                        <div class="faq-answer">
-                            Our MoE architecture uses 384 experts with 8 selected per token,
-                            providing 1 trillion parameter capacity while activating only 32
-                            billion parameters per inference. This achieves excellent
-                            performance with efficient resource utilization.
+
+                        <div class="agentic-rl-section">
+                            <h3>Entropy Based Tree Pruning</h3>
+                            <p>Even with the above mentioned technique, performing training through all tokens in the full tree still remains prohibitively expensive. Thus, we need a mechanism to prioritize nodes that carry the strongest training signals.</p>
+                            <p>To this end, we compress trajectories into a prefix tree where each node represents a shared prefix and each edge corresponds to a segment of tokens. Under a fixed compute budget, the goal is to retain only the most valuable nodes for training. We estimate the informativeness of nodes based on entropy signals aggregated across the tree and their likelihood of being reached, and then prune the tree by expanding nodes in order of importance until the budget is exhausted. Additional heuristics ensure that structurally important regions (e.g., tool or memory events) are preserved and that local context is maintained for stable training. This entropy-based pruning enables us to substantially reduce redundant computation while retaining most of the effective training signal, leading to significant throughout gains and lower overall cost.</p>
                         </div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question">
-                            What inference engines are supported for deployment?
-                        </button>
-                        <div class="faq-answer">
-                            KAT-Coder supports vLLM, SGLang, KTransformers, and
-                            TensorRT-LLM. We provide comprehensive deployment guides and
-                            examples for each engine to ensure optimal performance in your
-                            environment.
+
+                        <div class="agentic-rl-section">
+                            <h3>RL Infrastructure - SeamlessFlow</h3>
+                            <figure style="margin: 40px 0; text-align: center;">
+                                <img src="case-pic/pic-3.png" alt="Agentic RL Scaling Architecture" style="max-width: 800px; width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); background: white; padding: 20px;"/>
+                            </figure>
+                            <p>To scale RL, it is essential to fully decouple RL training from the diverse internal logic of agents, while also maximizing the utilization of heterogeneous computational architectures. Following the design of SeamlessFlow, we implemented an intermediate layer between agents and RL training dedicated to trajectory-tree management, ensuring strict separation between the two. In addition, we adopted the proposed tag-driven scheduling mechanism[ref] to orchestrate task allocation across heterogeneous clusters, thereby minimizing pipeline bubbles and sustaining high-throughput training.</p>
                         </div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question">
-                            How does KAT-Coder perform compared to proprietary models?
-                        </button>
-                        <div class="faq-answer">
-                            KAT-Coder achieves 53.7% on LiveCodeBench, 65.8% on SWE-bench
-                            Verified, and 76.5% on AceBench, often outperforming many larger
-                            proprietary models in coding and reasoning tasks.
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question">
-                            Is KAT-Coder suitable for commercial use?
-                        </button>
-                        <div class="faq-answer">
-                            Yes! KAT-Coder is released under Modified MIT License, allowing
-                            unrestricted commercial use. You can deploy it in production,
-                            modify it, and integrate it into your products freely.
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question">
-                            What are the system requirements for running KAT-Coder?
-                        </button>
-                        <div class="faq-answer">
-                            Due to its 1 trillion parameter size, KAT-Coder requires
-                            substantial GPU memory. Specific requirements depend on your
-                            chosen inference engine and quantization settings. Please refer
-                            to our deployment guides for detailed specifications.
+
+                        <div class="agentic-rl-section">
+                            <h3>Unified Environment Interface and RL Data Construction</h3>
+                            <p>We unify the deployment and evaluation interfaces across different RL execution environments, enabling any newly added environment to be seamlessly integrated at low cost. This unified design lays a solid foundation for scaling RL training across heterogeneous data sources and task types. Specifically, for software development scenarios, we focus on three essential components: problem descriptions paired with corresponding branch code, executable environments, and verifiable test cases. We collect pull requests and the associated issues from open-source repositories and some internal repositories, and filter low-quality data based on the stars, PR activities, and the issue content of these repositories. We then systematically construct executable environment images and generate unit test cases for each collected instance. In addition to software engineering data, we also incorporate other verifiable domains such as math and reasoning tasks, further enriching the diversity of RL signals.</p>
+                            <p>More importantly, beyond open-source data, we further collect and leverage anonymized, enterprise-grade codebases derived from real-world industrial systems for RL training. Unlike training solely on public repositories (like those on GitHub), which often contain simpler projects, these large-scale, complex codebases—spanning multiple programming languages and representing genuine business logic—expose models to significantly more challenging development scenarios, providing highly valuable assets for RL. Training agents to solve such real-world industrial problems not only enhances learning robustness but also grounds the resulting models' programming proficiency in realistic, production-level contexts.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Code with KAT-Dev -->
+        <section class="hero">
+            <div class="container">
+                <div class="code-module">
+                    <h2 class="hero-subtitle">Code with KAT-Dev</h2>
+                    
+                    <div class="hero-description">
+                        <div class="code-section">
+                            <h3>Claude Code</h3>
+                            <p>
+                    You can now use KAT‑Dev with Claude Code. Simply request an API key on 【此处替换streamLake#万擎】 platform and install Claude Code to start coding.
+                </p>
+                            <div class="code-block">
+                                <pre><code>npm install -g @anthropic-ai/claude-code</code></pre>
+                            </div>
+                            <p>
+                    We have provided a entrypoint for seamlessly experiencing coding with KAT‑Dev.
+                </p>
+                        </div>
+
+                        <div class="code-section">
+                            <h3>Claude Code Proxy API</h3>
+                            <p>Configure your environment variables to use KAT-Dev through the proxy API:</p>                
+                            
+                            <div class="code-block">
+                                <pre><code>export ANTHROPIC_BASE_URL=https://dashscope-intl.aliyuncs.com/api/v2/apps/claude-code-proxy # 此处替换域名
+
+export ANTHROPIC_AUTH_TOKEN=your-dashscope-apikey</code></pre>
+                            </div>
+                            
+                            <p>Then you should be able to use Claude Code with KAT-Dev!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- User Cases -->
+        <section class="hero" id="cases">
+            <div class="container">
+                <div class="cases-module">
+                    <h2 class="hero-subtitle">User Cases</h2>
+                    
+                    <div class="hero-description">
+                        <!-- Tab Navigation -->
+                        <div class="cases-tabs">
+                            <button class="cases-tab active" data-tab="starry-sky">
+                                🌟 星空效果
+                            </button>
+                            <button class="cases-tab" data-tab="fruit-ninja">
+                                🥷 水果忍者
+                            </button>
+                            <button class="cases-tab" data-tab="code-refactor">
+                                🔧 代码重构
+                            </button>
+                        </div>
+
+                        <!-- Tab Content -->
+                        <div class="cases-content">
+                            <!-- 星空效果 -->
+                            <div class="case-panel active" id="starry-sky">
+                                <iframe src="case-star/star.html"></iframe>
+                            </div>
+
+                            <!-- 水果忍者 -->
+                            <div class="case-panel" id="fruit-ninja">
+                                <iframe src="case-fruit/fruit_ninja.html"></iframe>
+                            </div>
+
+                            <!-- 代码重构 -->
+                            <div class="case-panel" id="code-refactor">
+                                <div class="case-image">
+                                    <img src="case-pic/pic-4.png" alt="代码重构案例展示"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Emergent Behaviors after Agentic RL Scaling -->
+        <section class="hero">
+            <div class="container">
+                <div class="emergent-module">
+                    <h2 class="hero-subtitle">Emergent Behaviors after Agentic RL Scaling</h2>
+                    
+                    <div class="hero-description">
+                        <p>During our agentic RL scaling, we observed significant emergence:</p>
+                        
+                        <div class="emergent-section">
+                            <h3>Observed Behaviors</h3>
+                            
+                            <div class="behavior-card">
+                                <h4>⚡ Substantial Reduction in Multi-turn Interactions</h4>
+                                <p>The model demonstrates a capability to complete tasks with fewer interaction turns, with an average decrease of <span class="metric">32%</span> in the interaction turns compared to the model trained after SFT stage.</p>
+                            </div>
+                            
+                            <div class="behavior-card">
+                                <h4>🔄 Parallel Tool Calling</h4>
+                                <p>After trained with our RL stage, the model exhibits the capability to call for multiple tools simultaneously, departing from the conventional sequential calling paradigm.</p>
+                            </div>
+                        </div>
+
+                        <div class="emergent-section">
+                            <h3>Theoretical Analysis</h3>
+                            <p>We hypothesize that the emergence primarily arise from the latent optimization objective introduced by the trajectory tree structure:</p>
+                            
+                            <div class="behavior-card">
+                                <h4>📈 Formation of Efficiency Preference</h4>
+                                <p>Within a trajectory tree, shorter paths (corresponding to fewer interaction turns) are shared across a larger number of trajectories, which creates a latent optimization objective whereby the model learns to propose more efficient solution strategies.</p>
+                            </div>
+                            
+                            <div class="behavior-card">
+                                <h4>🌳 Natural Selection of Parallelization</h4>
+                                <p>In the tree structure, parallel tool calling creates additional branching possibilities. These branches are processed independently during training, enabling the model to simultaneously explore various tool calling. Furthermore, our Long-Term Entropy Pruning mechanism preserves tree nodes with more information, and nodes with multi-tool calling typically exhibit higher entropy. This process gradually guides the model towards acquiring a "batch processing" capability.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Future Work -->
+        <section class="hero">
+            <div class="container">
+                <div class="future-module">
+                    <h2 class="hero-subtitle">Future Work</h2>
+                    
+                    <div class="hero-description">
+                        <p>We are committed to pushing the boundaries of what's possible in code intelligence:</p>
+                        
+                        <div class="future-grid">
+                            <div class="future-card">
+                                <h4><span class="icon">🔧</span> Enhanced Tool Integration</h4>
+                                <p>Deep integration with popular IDEs, version control systems, and development workflows to create seamless coding experiences.</p>
+                            </div>
+                            
+                            <div class="future-card">
+                                <h4><span class="icon">🌐</span> Multi-Language Expansion</h4>
+                                <p>Extending our models' capabilities to cover emerging programming languages and frameworks, ensuring comprehensive language support.</p>
+                            </div>
+                            
+                            <div class="future-card">
+                                <h4><span class="icon">🤝</span> Collaborative Coding</h4>
+                                <p>Exploring multi-agent systems where KAT models can work together on complex software projects, enabling unprecedented collaboration.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="reference-section">
+                            <h4>References</h4>
+                            <p class="hero-description">
+                                [1] SeamlessFlow: A Trainer Agent Isolation RL Framework Achieving Bubble-Free Pipelines via Tag Scheduling.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
         <!-- Footer -->
         <footer class="footer">
             <div class="container">
@@ -1237,37 +1846,76 @@
     </div>
 
     <script>
-        // FAQ functionality
-        document.querySelectorAll(".faq-question").forEach((question) => {
-            question.addEventListener("click", () => {
-                const answer = question.nextElementSibling;
-                const isOpen = answer.classList.contains("show");
-                
-                // Close all other FAQs
-                document.querySelectorAll(".faq-answer").forEach((a) => {
-                    a.classList.remove("show");
+        // Initialize all functionality when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeNavigation();
+            initializeCharts();
+            initializeScrollAnimations();
+            initializeCasesTabs();
+            initializeScrollSpy();
+        });
+
+        // Navigation functionality
+        function initializeNavigation() {
+            // FAQ functionality
+            document.querySelectorAll(".faq-question").forEach((question) => {
+                question.addEventListener("click", () => {
+                    const answer = question.nextElementSibling;
+                    const isOpen = answer.classList.contains("show");
+                    
+                    // Close all other FAQs
+                    document.querySelectorAll(".faq-answer").forEach((a) => {
+                        a.classList.remove("show");
+                    });
+                    
+                    // Toggle current FAQ
+                    if (!isOpen) {
+                        answer.classList.add("show");
+                    }
                 });
-                
-                // Toggle current FAQ
-                if (!isOpen) {
-                    answer.classList.add("show");
-                }
             });
-        });
 
-        // Nav tabs functionality
-        document.querySelectorAll(".nav-tab").forEach((tab) => {
-            tab.addEventListener("click", () => {
-                document
-                    .querySelectorAll(".nav-tab")
-                    .forEach((t) => t.classList.remove("active"));
-                tab.classList.add("active");
+            // Nav tabs functionality
+            document.querySelectorAll(".nav-tab").forEach((tab) => {
+                tab.addEventListener("click", () => {
+                    const targetId = tab.getAttribute('data-target');
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        // Update active state
+                        document.querySelectorAll(".nav-tab").forEach((t) => t.classList.remove("active"));
+                        tab.classList.add("active");
+                        
+                        // Smooth scroll to target
+                        const headerHeight = document.querySelector('header').offsetHeight;
+                        const targetPosition = targetElement.offsetTop - headerHeight - 20;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
             });
-        });
 
-        // Chart interactivity
-        document.querySelectorAll(".bar").forEach((bar) => {
-            // Create tooltip
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+                anchor.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute("href"));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start",
+                        });
+                    }
+                });
+            });
+        }
+
+        // Chart functionality
+        function initializeCharts() {
+            // Create shared tooltip
             const tooltip = document.createElement("div");
             tooltip.className = "chart-tooltip";
             tooltip.style.cssText = `
@@ -1285,91 +1933,68 @@
             `;
             document.body.appendChild(tooltip);
 
-            bar.addEventListener("mouseenter", (e) => {
-                const value = bar.getAttribute("data-value");
-                const modelName =
-                    bar.parentElement.querySelector(".model-name").textContent;
+            // Bar chart interactivity
+            document.querySelectorAll(".bar").forEach((bar) => {
+                bar.addEventListener("mouseenter", (e) => {
+                    const value = bar.getAttribute("data-value");
+                    const modelName = bar.parentElement.querySelector(".model-name").textContent;
+                    
+                    tooltip.textContent = modelName === "GPT-5" 
+                        ? `GPT-5: ${value}% (On 500 verified tasks)`
+                        : `${modelName}: ${value}%`;
+                    tooltip.style.opacity = "1";
+                });
 
-                // Special tooltip for GPT-5
-                if (modelName === "GPT-5") {
-                    tooltip.textContent = `GPT-5: ${value}% (On 500 verified tasks)`;
-                } else {
-                tooltip.textContent = `${modelName}: ${value}%`;
+                bar.addEventListener("mousemove", (e) => {
+                    tooltip.style.left = e.pageX + 10 + "px";
+                    tooltip.style.top = e.pageY - 30 + "px";
+                });
+
+                bar.addEventListener("mouseleave", () => {
+                    tooltip.style.opacity = "0";
+                });
+
+                bar.addEventListener("click", () => {
+                    bar.style.transform = "scale(1.1)";
+                    setTimeout(() => {
+                        bar.style.transform = "scale(1.05)";
+                    }, 150);
+                });
+            });
+
+            // Initialize scatter chart
+            createScatterChart();
+        }
+
+        // Scroll animations
+        function initializeScrollAnimations() {
+            // Add CSS animation
+            const style = document.createElement("style");
+            style.textContent = `
+                @keyframes barGrowth {
+                    from { transform: scaleY(0); opacity: 0; }
+                    to { transform: scaleY(1); opacity: 1; }
                 }
+                .bar { transform-origin: bottom; animation: none; }
+            `;
+            document.head.appendChild(style);
 
-                tooltip.style.opacity = "1";
-            });
+            const animateCharts = () => {
+                document.querySelectorAll(".chart").forEach((chart) => {
+                    const rect = chart.getBoundingClientRect();
+                    if (rect.top < window.innerHeight * 0.8) {
+                        chart.querySelectorAll(".bar").forEach((bar, index) => {
+                            setTimeout(() => {
+                                bar.style.animation = "barGrowth 0.8s ease-out forwards";
+                            }, index * 100);
+                        });
+                    }
+                });
+            };
 
-            bar.addEventListener("mousemove", (e) => {
-                tooltip.style.left = e.pageX + 10 + "px";
-                tooltip.style.top = e.pageY - 30 + "px";
-            });
-
-            bar.addEventListener("mouseleave", () => {
-                tooltip.style.opacity = "0";
-            });
-
-            // Add click animation
-            bar.addEventListener("click", () => {
-                bar.style.transform = "scale(1.1)";
-                setTimeout(() => {
-                    bar.style.transform = "scale(1.05)";
-                }, 150);
-            });
-        });
-
-        // Chart animation on scroll
-        const animateCharts = () => {
-            const charts = document.querySelectorAll(".chart");
-            charts.forEach((chart) => {
-                const rect = chart.getBoundingClientRect();
-                if (rect.top < window.innerHeight * 0.8) {
-                    chart.querySelectorAll(".bar").forEach((bar, index) => {
-                        setTimeout(() => {
-                            bar.style.animation = "barGrowth 0.8s ease-out forwards";
-                        }, index * 100);
-                    });
-                }
-            });
-        };
-
-        // Add CSS animation
-        const style = document.createElement("style");
-        style.textContent = `
-            @keyframes barGrowth {
-                from { 
-                    transform: scaleY(0); 
-                    opacity: 0; 
-                }
-                to { 
-                    transform: scaleY(1); 
-                    opacity: 1; 
-                }
-            }
-            .bar {
-                transform-origin: bottom;
-                animation: none;
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Initial chart animation check
-        window.addEventListener("scroll", animateCharts);
-        window.addEventListener("load", animateCharts);
-
-        // Smooth scrolling for any anchor links
-        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-            anchor.addEventListener("click", function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute("href"));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start",
-                    });
-                }
-            });
-        });
+            window.addEventListener("scroll", animateCharts);
+            window.addEventListener("load", animateCharts);
+        }
 
         // Scatter Chart
         const scatterData = [
@@ -1490,7 +2115,7 @@
                  let labelY = y - 7; // Align label center with point center (14px icon height / 2 = 7px)
 
                  // If label would overflow right edge, position it to the left instead
-                 // Use plotWidth * 1.2 to account for the 120% width of scatter-plot
+                 // Check if label would overflow right edge
                  if (x + 15 + labelWidth > plotWidth * 1.2) {
                      labelX = x - labelWidth - 15; // Position to the left with 15px gap
                  }
@@ -1671,6 +2296,75 @@
                 setTimeout(createScatterChart, 100);
             }
         });
+
+        // User Cases Tab functionality
+        function initializeCasesTabs() {
+            const tabs = document.querySelectorAll('.cases-tab');
+            const panels = document.querySelectorAll('.case-panel');
+
+            if (tabs.length === 0 || panels.length === 0) return;
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const targetId = tab.getAttribute('data-tab');
+                    
+                    // Remove active class from all tabs and panels
+                    tabs.forEach(t => t.classList.remove('active'));
+                    panels.forEach(p => p.classList.remove('active'));
+                    
+                    // Add active class to clicked tab and corresponding panel
+                    tab.classList.add('active');
+                    const targetPanel = document.getElementById(targetId);
+                    if (targetPanel) {
+                        targetPanel.classList.add('active');
+                    }
+                });
+            });
+        }
+
+        // Scroll spy functionality for nav tabs
+        function initializeScrollSpy() {
+            const navTabs = document.querySelectorAll('.nav-tab');
+            const sections = ['overview', 'features', 'performance', 'cases'];
+            const headerHeight = document.querySelector('header').offsetHeight;
+            
+            function updateActiveTab() {
+                const scrollPosition = window.scrollY + headerHeight + 100;
+                
+                let currentSection = 'overview';
+                
+                for (let i = sections.length - 1; i >= 0; i--) {
+                    const section = document.getElementById(sections[i]);
+                    if (section && section.offsetTop <= scrollPosition) {
+                        currentSection = sections[i];
+                        break;
+                    }
+                }
+                
+                // Update active tab
+                navTabs.forEach(tab => {
+                    tab.classList.remove('active');
+                    if (tab.getAttribute('data-target') === currentSection) {
+                        tab.classList.add('active');
+                    }
+                });
+            }
+            
+            // Throttle scroll events for better performance
+            let ticking = false;
+            function onScroll() {
+                if (!ticking) {
+                    requestAnimationFrame(() => {
+                        updateActiveTab();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }
+            
+            window.addEventListener('scroll', onScroll);
+            updateActiveTab(); // Initial call
+        }
     </script>
 </body>
 
