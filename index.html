@@ -10,7 +10,7 @@
     <link rel="icon" type="image/svg+xml" href="https://s16-def.ap4r.com/kos/s101/nlav112218/kwaipilot-oversea/icons/favicon.svg">
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
-    <title>KAT-Coder: Open Agentic Intelligence</title>
+    <title>Kwaipilot-AutoThink</title>
     
     <style>
         :root {
@@ -38,12 +38,17 @@
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            overflow-x: hidden;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         /* Header */
@@ -57,7 +62,7 @@
 
         .nav {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             padding: 16px 0;
         }
@@ -71,41 +76,46 @@
             gap: 8px;
         }
 
-        .nav-tabs {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: var(--border-radius);
-            padding: 4px;
-            display: flex;
-            gap: 4px;
-        }
-
-        .nav-tab {
-            padding: 8px 16px;
-            border-radius: 6px;
-            font-size: 14px;
-            font-weight: 500;
-            color: rgba(255, 255, 255, 0.7);
-            cursor: pointer;
-            transition: var(--transition);
-            border: none;
-            background: none;
-            font-family: inherit;
-        }
-
-        .nav-tab:hover {
-            color: rgba(255, 255, 255, 0.9);
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .nav-tab.active {
-            color: #333;
-            background: rgba(255, 255, 255, 0.9);
-        }
 
         /* Hero Section */
         .hero {
-            padding: 50px 0;
+            padding: 60px 0;
             text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 首屏特殊布局调整 */
+        .hero#overview {
+            padding-top: 40px;
+            padding-bottom: 80px;
+        }
+
+        /* 星空背景样式 */
+        .starry-sky {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        #stars-canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* 确保内容在星空之上 */
+        .hero .container {
+            position: relative;
+            z-index: 2;
         }
 
         .hero .hero-description {
@@ -115,6 +125,7 @@
         .hero-title {
             font-size: clamp(36px, 6vw, 72px);
             font-weight: 700;
+            margin-top: 0;
             margin-bottom: 24px;
             background: linear-gradient(135deg, #fff 0%, var(--text-secondary) 100%);
             -webkit-background-clip: text;
@@ -130,8 +141,103 @@
         .hero-subtitle {
             font-size: clamp(20px, 4vw, 28px);
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 16px;
             color: var(--text-primary);
+        }
+
+        /* Highlight 居中调整 */
+        .hero#overview .hero-subtitle {
+            margin-top: 8px;
+            margin-bottom: 20px;
+        }
+
+        /* Open Access 模块间距调整 */
+        .open-access-section {
+            padding-top: 30px;
+            padding-bottom: 30px;
+            min-height: auto;
+        }
+
+        /* Highlights 模块高亮样式 */
+        .highlight-model {
+            color: var(--accent-blue);
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-blue) 0%, #32f3f3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(26, 136, 255, 0.3);
+        }
+
+        .highlight-groundbreaking {
+            color: #ff6b6b;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .highlight-excellence {
+            color: #32f3f3;
+            font-weight: 600;
+            background: linear-gradient(135deg, #32f3f3 0%, #00d4ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 15px rgba(50, 243, 243, 0.4);
+        }
+
+        .highlight-performance {
+            color: #ffd700;
+            font-weight: 600;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .highlight-opensource {
+            color: #4caf50;
+            font-weight: 700;
+            background: linear-gradient(135deg, #4caf50 0%, #8bc34a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 15px rgba(76, 175, 80, 0.4);
+        }
+
+        .highlight-metric {
+            color: #32f3f3;
+            font-weight: 700;
+            font-size: 1.1em;
+            background: linear-gradient(135deg, #32f3f3 0%, #00d4ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 15px rgba(50, 243, 243, 0.4);
+        }
+
+        .highlight-rank {
+            color: #ffd700;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .highlight-achievement {
+            color: #ff6b6b;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 15px rgba(255, 107, 107, 0.4);
         }
 
         .hero-description {
@@ -224,7 +330,8 @@
 
         .kat-training-section {            
             border-radius: 12px;
-            padding: 10px 0px;
+            padding: 5px 0px;
+            margin: 20px 0;
         }
 
         .kat-training-section h3 {
@@ -275,7 +382,8 @@
 
         .agentic-rl-section {            
             border-radius: 12px;
-            padding: 10px 0px;
+            padding: 5px 0px;
+            margin: 20px 0;
         }
 
         .agentic-rl-section h3 {
@@ -299,7 +407,8 @@
 
         .code-section {            
             border-radius: 12px;
-            padding: 10px 0px;
+            padding: 5px 0px;
+            margin: 20px 0;
         }
 
         .code-section h3 {
@@ -319,6 +428,113 @@
             margin: 20px 0;
         }
 
+        /* Code with KAT-Dev 模块去除首行缩进 */
+        .code-module .hero-description p,
+        .code-module p.hero-description {
+            text-indent: 0;
+        }
+
+        /* Code with KAT-Dev 模块移动端优化 */
+        @media (max-width: 768px) {
+            .code-module {
+                padding: 0;
+                overflow-x: hidden;
+            }
+
+            .code-section {
+                padding: 10px 0;
+                margin: 15px 0;
+                overflow-x: hidden;
+            }
+
+            .code-section h3 {
+                font-size: clamp(16px, 4vw, 20px);
+                margin-bottom: 12px;
+                line-height: 1.3;
+            }
+
+            .code-section .code-block {
+                margin: 16px 0;
+                padding: 12px;
+                border-radius: 8px;
+                overflow-x: auto;
+                background: rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                word-wrap: break-word;
+                word-break: break-all;
+            }
+
+            .code-section .code-block pre {
+                font-size: 14px;
+                line-height: 1.4;
+                margin: 0;
+                white-space: pre-wrap;
+                word-break: break-all;
+                overflow-wrap: break-word;
+            }
+
+            .code-section .code-block code {
+                font-size: 14px;
+                line-height: 1.4;
+                white-space: pre-wrap;
+                word-break: break-all;
+                overflow-wrap: break-word;
+            }
+
+            .code-section p {
+                font-size: 16px;
+                line-height: 1.5;
+                margin-bottom: 16px;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .code-section {
+                padding: 8px 0;
+                margin: 12px 0;
+            }
+
+            .code-section h3 {
+                font-size: clamp(14px, 5vw, 18px);
+                margin-bottom: 10px;
+            }
+
+            .code-section .code-block {
+                margin: 12px 0;
+                padding: 10px;
+                background: rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 6px;
+                word-wrap: break-word;
+                word-break: break-all;
+            }
+
+            .code-section .code-block pre {
+                font-size: 13px;
+                margin: 0;
+                white-space: pre-wrap;
+                word-break: break-all;
+                overflow-wrap: break-word;
+            }
+
+            .code-section .code-block code {
+                font-size: 13px;
+                line-height: 1.4;
+                white-space: pre-wrap;
+                word-break: break-all;
+                overflow-wrap: break-word;
+            }
+
+            .code-section p {
+                font-size: 15px;
+                margin-bottom: 12px;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+            }
+        }
+
         /* Emergent Behaviors Module Styles */
         .emergent-module {
             padding: 0;
@@ -327,7 +543,8 @@
 
         .emergent-section {            
             border-radius: 12px;
-            padding: 20px 0px;
+            padding: 5px 0px;
+            margin: 20px 0;
         }
 
         .emergent-section h3 {
@@ -344,7 +561,8 @@
         }
 
         .behavior-card {
-            background: rgba(255, 255, 255, 0.05);            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 12px;
             padding: 20px;
             margin: 16px 0;
@@ -451,7 +669,7 @@
             display: flex;
             border-bottom: 2px solid rgba(255, 255, 255, 0.1);
             margin-bottom: 30px;
-            overflow-x: auto;
+
         }
 
         .cases-tab {
@@ -488,7 +706,13 @@
 
         .cases-content {
             position: relative;
-            min-height: 500px;
+            min-height: 100vh;
+            max-height: 100vh;
+            max-width: 800px;
+            margin: 0 auto;
+            overflow-y: auto;
+            overflow-x: hidden;
+            width: 100%;
         }
 
         .case-panel {
@@ -502,11 +726,14 @@
 
         .case-panel iframe {
             width: 100%;
-            height: 500px;
+            height: 100vh;
+            min-height: 100vh;
+            max-height: 100vh;
             border: none;
             border-radius: 12px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             background: #000;
+            max-width: 800px;
         }
 
         .case-panel .case-image {
@@ -515,12 +742,58 @@
         }
 
         .case-panel .case-image img {
-            max-width: 100%;
+            max-width: 800px;
+            width: 100%;
             height: auto;
             border-radius: 12px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            background: white;
+            object-fit: contain;
+        }
+
+        /* 代码重构case特殊样式 */
+        .case-panel#code-refactor {
+            height: auto;
+            min-height: 100vh;
             padding: 20px;
+        }
+
+        .case-panel#code-refactor .case-image {
+            margin: 0;
+        }
+
+        .case-panel#code-refactor .case-image img {
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            object-fit: contain;
+        }
+
+        /* 滚动条样式 - 隐藏 */
+        .cases-content::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+
+        .cases-content::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .cases-content::-webkit-scrollbar-thumb {
+            background: transparent;
+        }
+
+        .cases-content::-webkit-scrollbar-thumb:hover {
+            background: transparent;
+        }
+
+        /* Firefox 滚动条隐藏 */
+        .cases-content {
+            scrollbar-width: none;
+        }
+
+        /* IE/Edge 滚动条隐藏 */
+        .cases-content {
+            -ms-overflow-style: none;
         }
 
 
@@ -537,18 +810,39 @@
 
         /* Responsive design for tabs */
         @media (max-width: 768px) {
-            .cases-tabs {
-                flex-wrap: wrap;
-            }
-            
-            .cases-tab {
-                flex: 1;
-                min-width: auto;
-                text-align: center;
+            .cases-tabs { flex-wrap: wrap; }
+            .cases-tab { flex: 1; min-width: auto; text-align: center; }
+            .case-panel iframe { height: 80vh; min-height: 600px; max-height: 100vh; width: 100%; max-width: 400px; }
+            .cases-content { max-width: 400px; min-height: 80vh; max-height: 100vh; overflow-y: auto; overflow-x: hidden; }
+            .case-panel#code-refactor { height: auto; min-height: 80vh; padding: 15px; }
+        }
+
+        /* 确保桌面端User Cases保持800px宽度 */
+        @media (min-width: 769px) {
+            .cases-content {
+                max-width: 800px !important;
+                width: 800px !important;
+                overflow-y: auto !important;
+                overflow-x: hidden !important;
             }
             
             .case-panel iframe {
-                height: 400px;
+                max-width: 800px !important;
+                width: 800px !important;
+                height: 100vh !important;
+                min-height: 100vh !important;
+                max-height: 100vh !important;
+            }
+            
+            .case-panel .case-image img {
+                max-width: 800px !important;
+                width: 800px !important;
+            }
+
+            .case-panel#code-refactor {
+                height: auto !important;
+                min-height: 100vh !important;
+                padding: 20px !important;
             }
         }
 
@@ -561,52 +855,6 @@
             margin-bottom: 6px;
             font-size: 14px;
             line-height: 1.4;
-        }
-
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 14px 28px;
-            border-radius: var(--border-radius);
-            font-size: 16px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: var(--transition);
-            border: 1px solid transparent;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-primary {
-            background: var(--accent-blue);
-            color: white;
-            border-color: var(--accent-blue);
-        }
-
-        .btn-primary:hover {
-            background: var(--accent-blue-hover);
-            border-color: var(--accent-blue-hover);
-            transform: translateY(-2px);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-primary);
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.4);
-            transform: translateY(-2px);
         }
 
         /* Benchmark Charts */
@@ -626,9 +874,11 @@
             display: grid;
             grid-template-columns: 1fr;
             gap: 60px;
-            max-width: 1000px;
+            max-width: 800px;
             margin: 0 auto;
             overflow-x: auto;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
         }
 
         .chart-wrapper {
@@ -638,12 +888,12 @@
             padding: 32px;
             transition: var(--transition);
             width: 100%;
-            min-width: 1000px;
+            min-width: 800px;
         }
 
         .chart-wrapper:hover {
             border-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
+
         }
 
         .chart-title {
@@ -684,13 +934,13 @@
             flex-direction: column;
             align-items: center;
             justify-content: flex-end;
-            width: 80px;
+            width: 60px;
             height: 100%;
             position: relative;
         }
 
         .bar {
-            width: 60px;
+            width: 45px;
             min-height: 20px;
             border-radius: var(--border-radius) var(--border-radius) 0 0;
             position: relative;
@@ -759,325 +1009,230 @@
             transform: translateX(-50%);
         }
 
-        /* Scatter Chart */
+        /* ===========================================
+           SCATTER CHART MODULE STYLES - 独立样式
+           =========================================== */
+        
+        /* 散点图容器独立样式 - 不受其他样式影响 */
         .scatter-chart-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 40px 0px;
+            max-width: 800px !important;
+            margin: 0 auto !important;
+            padding: 40px 0px !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+            overflow-x: auto !important;
+            -webkit-overflow-scrolling: touch !important;
         }
 
         .scatter-chart {
-            position: relative;
-            width: 100%;
-            min-width: 1000px;
-            height: 500px;
-            background: var(--bg-secondary);
-            border-radius: 12px;
-            padding: 60px 200px 80px 120px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: var(--transition);
+            position: relative !important;
+            width: 100% !important;
+            min-width: 800px !important;
+            height: 400px !important;
+            background: var(--bg-secondary) !important;
+            border-radius: 12px !important;
+            padding: 50px 150px 60px 100px !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            transition: var(--transition) !important;
+            box-sizing: border-box !important;
+            margin: 0 !important;
         }
 
         .scatter-chart:hover {
-            border-color: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.2) !important;
         }
 
         .scatter-chart-title {
-            position: absolute;
-            left: -40px;
-            top: 50%;
-            transform: translateY(-50%) rotate(-90deg);
-            font-size: 20px;
-            font-weight: 600;
-            color: var(--text-primary);
-            white-space: nowrap;
+            position: absolute !important;
+            left: -70px !important;
+            top: 50% !important;
+            transform: translateY(-50%) rotate(-90deg) !important;
+            font-size: 20px !important;
+            font-weight: 600 !important;
+            color: var(--text-primary) !important;
+            white-space: nowrap !important;
+            margin: 0 !important;
+            padding: 0 !important;
         }
 
         .scatter-chart-subtitle {
-            position: absolute;
-            left: -20px;
-            top: 50%;
-            transform: translateY(-50%) rotate(-90deg);
-            font-size: 14px;
-            color: var(--text-secondary);
-            white-space: nowrap;
+            position: absolute !important;
+            left: -50px !important;
+            top: 50% !important;
+            transform: translateY(-50%) rotate(-90deg) !important;
+            font-size: 14px !important;
+            color: var(--text-secondary) !important;
+            white-space: nowrap !important;
+            margin: 0 !important;
+            padding: 0 !important;
         }
 
         .scatter-plot {
-            position: relative;
-            width: 120%;
-            height: 100%;
-            border-left: 2px solid rgba(255, 255, 255, 0.2);
-            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            position: relative !important;
+            width: 120% !important;
+            height: 100% !important;
+            border-left: 2px solid rgba(255, 255, 255, 0.2) !important;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2) !important;
+            box-sizing: border-box !important;
         }
 
         .scatter-point {
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: absolute !important;
+            width: 12px !important;
+            height: 12px !important;
+            border-radius: 50% !important;
+            cursor: pointer !important;
+            transition: var(--transition) !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            margin: 0 !important;
+            padding: 0 !important;
         }
 
         .scatter-point:hover {
-            transform: scale(1.5);
-            z-index: 10;
+            transform: scale(1.5) !important;
+            z-index: 10 !important;
         }
 
         .scatter-point.kimi {
-            background: #4c96ff;
-            border: 2px solid #3186ff;
+            background: #4c96ff !important;
+            border: 2px solid #3186ff !important;
         }
 
         .scatter-point.deepseek {
-            background: #6366f1;
-            border: 2px solid #4f46e5;
+            background: #6366f1 !important;
+            border: 2px solid #4f46e5 !important;
         }
 
         .scatter-point.qwen {
-            background: #8b5cf6;
-            border: 2px solid #7c3aed;
+            background: #8b5cf6 !important;
+            border: 2px solid #7c3aed !important;
         }
 
         .scatter-point.glm {
-            background: #06b6d4;
-            border: 2px solid #0891b2;
+            background: #06b6d4 !important;
+            border: 2px solid #0891b2 !important;
         }
 
         .scatter-point.devstral {
-            background: #f59e0b;
-            border: 2px solid #d97706;
+            background: #f59e0b !important;
+            border: 2px solid #d97706 !important;
         }
 
         .scatter-point.kat {
-            background: linear-gradient(135deg, #32f3f3 0%, #0047ff 100%);
-            border: 2px solid #0047ff;
-            box-shadow: 0 0 15px rgba(50, 243, 243, 0.4);
+            background: linear-gradient(135deg, #32f3f3 0%, #0047ff 100%) !important;
+            border: 2px solid #0047ff !important;
+            box-shadow: 0 0 15px rgba(50, 243, 243, 0.4) !important;
         }
 
         .axis-label {
-            position: absolute;
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--text-primary);
+            position: absolute !important;
+            font-size: 14px !important;
+            font-weight: 500 !important;
+            color: var(--text-primary) !important;
+            margin: 0 !important;
+            padding: 0 !important;
         }
 
         .x-axis-label {
-            bottom: -50px;
-            left: 50%;
-            transform: translateX(-50%);
+            bottom: -50px !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
         }
 
         .y-axis-label {
-            left: -100px;
-            top: 50%;
-            transform: translateY(-50%) rotate(-90deg);
+            left: -100px !important;
+            top: 50% !important;
+            transform: translateY(-50%) rotate(-90deg) !important;
         }
 
         .axis-tick {
-            position: absolute;
-            font-size: 12px;
-            color: var(--text-secondary);
+            position: absolute !important;
+            font-size: 12px !important;
+            color: var(--text-secondary) !important;
+            margin: 0 !important;
+            padding: 0 !important;
         }
 
         .x-tick {
-            bottom: -25px;
-            transform: translateX(-50%);
+            bottom: -25px !important;
+            transform: translateX(-50%) !important;
         }
 
         .y-tick {
-            left: -35px;
-            transform: translateY(-50%);
+            left: -35px !important;
+            transform: translateY(-50%) !important;
         }
 
         .grid-line {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.05);
+            position: absolute !important;
+            background: rgba(255, 255, 255, 0.05) !important;
+            margin: 0 !important;
+            padding: 0 !important;
         }
 
         .grid-line.vertical {
-            width: 1px;
-            height: 100%;
-            top: 0;
+            width: 1px !important;
+            height: 100% !important;
+            top: 0 !important;
         }
 
         .grid-line.horizontal {
-            height: 1px;
-            width: 100%;
-            left: 0;
+            height: 1px !important;
+            width: 100% !important;
+            left: 0 !important;
         }
 
-        .scatter-legend {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 8px;
-            padding: 16px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        /* 移动端散点图保护 */
+        @media (max-width: 768px) {
+            .scatter-chart-container {
+                max-width: 800px !important;
+                margin: 0 auto !important;
+                padding: 40px 0px !important;
+            }
+
+            .scatter-chart {
+                position: relative !important;
+                width: 100% !important;
+                min-width: 800px !important;
+                height: 400px !important;
+                background: var(--bg-secondary) !important;
+                border-radius: 12px !important;
+                padding: 50px 150px 60px 100px !important;
+                border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            }
+
+            .scatter-chart-title {
+                font-size: clamp(16px, 4vw, 20px) !important;
+                left: -60px !important;
+            }
+
+            .scatter-chart-subtitle {
+                font-size: clamp(12px, 3vw, 14px) !important;
+                left: -45px !important;
+            }
         }
 
-        .legend-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 8px;
-            font-size: 12px;
-            color: var(--text-secondary);
-        }
+        @media (max-width: 480px) {
+            .scatter-chart-container {
+                padding: 20px 10px !important;
+            }
 
-        .legend-item:last-child {
-            margin-bottom: 0;
-        }
+            .scatter-chart {
+                height: 400px !important;
+                padding: 40px 150px 60px 100px !important;
+            }
 
-        .legend-color {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            margin-right: 8px;
-            border: 2px solid;
-        }
+            .scatter-chart-title {
+                font-size: clamp(14px, 5vw, 16px) !important;
+                left: -50px !important;
+            }
 
-        /* Features */
-        .features {
-            padding: 120px 0;
-        }
-
-        .section-title {
-            font-size: 48px;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-        }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 32px;
-            transition: all 0.3s;
-        }
-
-        .feature-card:hover {
-            border-color: var(--accent-blue);
-            background: rgba(26, 136, 255, 0.05);
-        }
-
-        .feature-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--accent-blue);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            font-size: 24px;
-        }
-
-        .feature-title {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-
-        .feature-description {
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        /* Performance */
-        .performance {
-            padding: 120px 0;
-            background: rgba(255, 255, 255, 0.01);
-        }
-
-        .performance-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-            margin-top: 60px;
-        }
-
-        .performance-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 24px;
-            text-align: center;
-        }
-
-        .performance-score {
-            font-size: 36px;
-            font-weight: 700;
-            color: var(--accent-blue);
-            margin-bottom: 8px;
-        }
-
-        .performance-label {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .performance-description {
-            font-size: 14px;
-            color: var(--text-tertiary);
-        }
-
-        /* FAQ */
-        .faq {
-            padding: 120px 0;
-        }
-
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            margin-bottom: 16px;
-            overflow: hidden;
-        }
-
-        .faq-question {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.02);
-            border: none;
-            padding: 20px;
-            text-align: left;
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--text-primary);
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .faq-question:hover {
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .faq-answer {
-            padding: 20px;
-            color: var(--text-secondary);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            display: none;
-        }
-
-        .faq-answer.show {
-            display: block;
+            .scatter-chart-subtitle {
+                font-size: clamp(10px, 4vw, 12px) !important;
+                left: -40px !important;
+            }
         }
 
         /* Footer */
@@ -1093,6 +1248,7 @@
             justify-content: center;
             gap: 32px;
             margin-bottom: 32px;
+            flex-wrap: wrap;
         }
 
         .footer-link {
@@ -1117,132 +1273,105 @@
         @media (max-width: 768px) {
             .container {
                 padding: 0 16px;
+                overflow-x: hidden;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+            }
+
+            /* 移动端星空优化 */
+            .starry-sky {
+                opacity: 0.8;
+            }
+
+            #stars-canvas {
+                opacity: 0.7;
             }
             
             .hero {
                 padding: 40px 0;
+                min-height: 80vh;
             }
+
+            .hero#overview { padding-top: 30px; padding-bottom: 60px; }
+            .open-access-section { padding-top: 20px; padding-bottom: 20px; }
+            .highlight-model, .highlight-groundbreaking, .highlight-excellence, .highlight-performance, 
+            .highlight-opensource, .highlight-metric, .highlight-rank, .highlight-achievement {
+                text-shadow: none; -webkit-text-fill-color: initial; background: none;
+            }
+            .highlight-model { color: var(--accent-blue); }
+            .highlight-groundbreaking { color: #ff6b6b; }
+            .highlight-excellence { color: #32f3f3; }
+            .highlight-performance { color: #ffd700; }
+            .highlight-opensource { color: #4caf50; }
+            .highlight-metric { color: #32f3f3; }
+            .highlight-rank { color: #ffd700; }
+            .highlight-achievement { color: #ff6b6b; }
+
+            .footer { padding: 40px 0 30px; }
+            .footer-links { gap: 20px; margin-bottom: 24px; }
+            .footer-link { padding: 8px 12px; font-size: 14px; min-height: 44px; display: flex; align-items: center; justify-content: center; }
+            .copyright { font-size: 13px; flex-direction: column; gap: 8px; }
             
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-                gap: 12px;
-            }
+            .hero-title { font-size: clamp(28px, 8vw, 48px); margin-bottom: 24px; line-height: 1.2; }
+            .hero-subtitle { font-size: clamp(18px, 5vw, 24px); margin-bottom: 12px; line-height: 1.3; }
+            .benchmark-title { font-size: clamp(20px, 6vw, 28px); margin-bottom: 32px; line-height: 1.2; }
+            .chart-title { font-size: clamp(16px, 4vw, 20px); margin-bottom: 12px; line-height: 1.3; }
+            .chart-subtitle { font-size: clamp(12px, 3vw, 14px); margin-bottom: 16px; }
             
-            .nav {
-                flex-direction: column;
-                gap: 16px;
-                padding: 12px 0;
-            }
-            
-            .nav-tabs {
-                order: -1;
-            }
-            
-            .charts-container {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
+            .charts-container { grid-template-columns: 1fr; gap: 30px; max-width: 100%; overflow-x: auto; }
+            .chart-wrapper { padding: 20px 12px; min-width: 300px; width: 100%; }
+            .chart { height: 300px; }
+            .chart-bars { padding-top: 20px; }
+            .bar-container { width: 50px; }
+            .bar { width: 35px; }
+            .bar-value { font-size: 12px; }
+            .model-name { font-size: 10px; max-width: 60px; bottom: -25px; }
 
-            .chart-wrapper {
-                padding: 24px 16px;
-            }
+            .hero-description ul, .hero-description ol { padding-left: 20px; }
+            .kat-module { padding: 0; }
+            .kat-training-section { padding: 10px; margin: 15px 0; }
+            .kat-tasks-grid { grid-template-columns: 1fr; gap: 16px; }
+            .kat-task-card { padding: 16px; }
+        }
 
-            .bar-container {
-                width: 60px;
-            }
-
-            .bar {
-                width: 45px;
-            }
-
-            .model-name {
-                font-size: 10px;
-                max-width: 70px;
-            }
-
-            .scatter-chart {
-                padding: 40px 100px 60px 80px;
-            }
-
-            .hero-description ul, .hero-description ol {
-                padding-left: 20px;
-            }
-
-            .kat-module {
-                padding: 0;
-            }
-
-            .kat-training-section {
-                padding: 16px;
-                margin: 20px 0;
-            }
-
-            .kat-tasks-grid {
-                grid-template-columns: 1fr;
-                gap: 16px;
-            }
-
-            .kat-task-card {
-                padding: 16px;
-            }
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .hero-title { font-size: clamp(48px, 6vw, 64px); margin-bottom: 28px; }
+            .hero-subtitle { font-size: clamp(22px, 4vw, 26px); margin-bottom: 14px; }
+            .benchmark-title { font-size: clamp(24px, 5vw, 28px); margin-bottom: 36px; }
+            .chart-title { font-size: clamp(18px, 3vw, 20px); margin-bottom: 14px; }
+            .charts-container { gap: 35px; }
+            .chart-wrapper { padding: 22px 14px; }
+            .chart { height: 350px; }
+            .bar-container { width: 55px; }
+            .bar { width: 40px; }
+            .bar-value { font-size: 13px; }
+            .model-name { font-size: 11px; max-width: 65px; }
         }
 
         @media (max-width: 480px) {
-            .hero-title {
-                font-size: 36px;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .chart-wrapper {
-                padding: 20px;
-            }
-
-            .chart {
-                height: 300px;
-            }
-
-            .bar-container {
-                width: 50px;
-            }
-
-            .bar {
-                width: 35px;
-            }
-
-            .model-name {
-                font-size: 9px;
-                max-width: 60px;
-                white-space: nowrap;
-            }
-
-            .benchmark-title {
-                font-size: 24px;
-            }
-
-            .chart-title {
-                font-size: 18px;
-            }
-
-            .scatter-chart-container {
-                padding: 20px 10px;
-            }
-
-            .scatter-chart {
-                height: 400px;
-                padding: 40px 150px 60px 100px;
-            }
-
-            .scatter-chart-title {
-                font-size: 16px;
-            }
-
-            .scatter-chart-subtitle {
-                font-size: 12px;
-            }
+            .container { padding: 0 12px; overflow-x: hidden; word-wrap: break-word; overflow-wrap: break-word; }
+            .starry-sky { opacity: 0.6; }
+            #stars-canvas { opacity: 0.5; }
+            .hero { padding: 30px 0; min-height: 70vh; }
+            .hero#overview { padding-top: 20px; padding-bottom: 40px; }
+            .open-access-section { padding-top: 15px; padding-bottom: 15px; }
+            .footer { padding: 30px 0 20px; }
+            .footer-links { gap: 16px; margin-bottom: 20px; }
+            .footer-link { padding: 6px 10px; font-size: 13px; min-height: 40px; }
+            .copyright { font-size: 12px; }
+            .hero-title { font-size: clamp(24px, 10vw, 36px); margin-bottom: 20px; line-height: 1.1; }
+            .hero-subtitle { font-size: clamp(16px, 6vw, 20px); margin-bottom: 10px; line-height: 1.2; }
+            .charts-container { gap: 20px; padding: 0 10px; }
+            .chart-wrapper { padding: 15px 8px; min-width: 280px; }
+            .chart { height: 250px; }
+            .chart-bars { padding-top: 15px; }
+            .bar-container { width: 45px; }
+            .bar { width: 30px; }
+            .bar-value { font-size: 11px; }
+            .model-name { font-size: 9px; max-width: 50px; bottom: -20px; white-space: nowrap; }
+            .benchmark-title { font-size: clamp(18px, 8vw, 24px); margin-bottom: 24px; line-height: 1.1; }
+            .chart-title { font-size: clamp(14px, 5vw, 18px); margin-bottom: 10px; line-height: 1.2; }
+            .chart-subtitle { font-size: clamp(11px, 4vw, 13px); margin-bottom: 12px; }
         }
     </style>
 </head>
@@ -1284,13 +1413,7 @@
                                 </clipPath>
                             </defs>
                         </svg>
-                        KAT-Coder
-                    </div>
-                    <div class="nav-tabs">
-                        <button class="nav-tab active" data-target="overview">Overview</button>
-                        <button class="nav-tab" data-target="features">Features</button>
-                        <button class="nav-tab" data-target="performance">Performance</button>
-                        <button class="nav-tab" data-target="cases">Cases</button>
+                        Kwaipilot-AutoThink
                     </div>
                 </nav>
             </div>
@@ -1299,6 +1422,10 @@
 
         <!-- Hero Section -->
         <section class="hero" id="overview">
+            <!-- 星空背景 -->
+            <div class="starry-sky" id="starry-sky">
+                <canvas id="stars-canvas"></canvas>
+            </div>
             <div class="container">
                 <h1 class="hero-title">
                     <svg width="64" height="64" viewBox="0 0 69 68" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -1335,18 +1462,15 @@
                 </h1>
                 <p class="hero-subtitle">Highlights</p>
                 <p class="hero-description">
-                    Today, we're thrilled to announce two groundbreaking models in our KAT series: KAT-Dev and KAT-Coder — representing accessible excellence and ultimate performance in code intelligence. We are excited to introduce KAT-Dev - our new open-source 32B-parameter model for software engineering tasks. Among all open-source models with different scales, KAT-Dev achieves comparable performance and ranks 3rd on SWE-Bench Verified with 65.0% resloved. Meanwhile, the most powerful variant: KAT-Coder, achieves 72.1% performance and resets a new state-of-the-art result on SWE-Bench Verified.
+                    Today, we're thrilled to announce two <strong class="highlight-groundbreaking">🚀 groundbreaking models</strong> in our KAT series: <span class="highlight-model">KAT-Dev</span> and <span class="highlight-model">KAT-Coder</span> — representing <em class="highlight-excellence">✨ accessible excellence</em> and <em class="highlight-performance">⚡ ultimate performance</em> in code intelligence. We are excited to introduce <span class="highlight-model">KAT-Dev</span> - our new <strong class="highlight-opensource">🔓 open-source 32B-parameter model</strong> for software engineering tasks. Among all open-source models with different scales, KAT-Dev achieves comparable performance and <span class="highlight-rank">🏆 ranks 3rd</span> on SWE-Bench Verified with <span class="highlight-metric">65.0%</span> resolved. Meanwhile, the most powerful variant: <span class="highlight-model">KAT-Coder</span>, achieves <span class="highlight-metric">72.1%</span> performance and <span class="highlight-achievement">🎯 resets a new state-of-the-art result</span> on SWE-Bench Verified.
                 </p>
+            </div>
+        </section>
 
-                <!-- Git -->
-                <div class="cta-buttons">
-                    <a href="https://github.com/kuaishou/KAT-Coder" class="btn btn-primary">GitHub</a>
-                    <a href="https://huggingface.co/kuaishou/KAT-Coder" class="btn btn-secondary">Hugging Face</a>
-                </div>
-
-                <!-- Benchmark Charts -->
-                <div class="benchmark-section" id="performance">
-                    <h3 class="benchmark-title">Agentic and Competitive Coding</h3>
+        <!-- Benchmark Charts -->
+        <section class="hero" id="performance">
+            <div class="container">
+                <h3 class="benchmark-title">Agentic and Competitive Coding</h3>
                     <div class="charts-container">
                         <div class="chart-wrapper">
                             <h4 class="chart-title">SWE-bench Verified</h4>
@@ -1484,26 +1608,29 @@
                                     </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Key Contributions -->
-        <section class="hero">
+        <section class="hero" id="key-contributions">
             <div class="container">
                 <h2 class="hero-subtitle">Key Contributions</h2>
                 <div class="hero-description">
                     <p>Our KAT-Dev and KAT-Coder are optimized via several stages of training, including a mid-training stage, supervised fine-tuning (SFT) & reinforcement fine-tuning (RFT) stage and an large-scale agentic reinforcement learning (RL) stage. In summary, our contributions include:</p>
                     
-                    <p><strong>Mid-Training:</strong> We observe that adding extensive training for tool-use capability, multi-turn interaction, and instruction-following at this stage may not yield large performance gains in the current results (e.g., on leaderboards like SWE-bench), but it will have a significant impact on the subsequent SFT and RL stages.</p>
+                    <p><strong>🎯 Mid-Training:</strong> We observe that adding extensive training for tool-use capability, multi-turn interaction, and instruction-following at this stage may not yield large performance gains in the current results (e.g., on leaderboards like SWE-bench), but it will have a significant impact on the subsequent SFT and RL stages.</p>
                     
-                    <p><strong>SFT & RFT:</strong> We meticulously curated eight task types and eight programming scenarios during the SFT stage to ensure the model's generalization and comprehensive capabilities. Moreover, before RL, we innovatively introduced an RFT stage with "teacher trajectories" annotated by human engineers as guidance during training.</p>
+                    <p><strong>🎯 SFT & RFT:</strong> We meticulously curated eight task types and eight programming scenarios during the SFT stage to ensure the model's generalization and comprehensive capabilities. Moreover, before RL, we innovatively introduced an RFT stage with "teacher trajectories" annotated by human engineers as guidance during training.</p>
                     
-                    <p><strong>Agentic RL Scaling:</strong> Scaling agentic RL hinges on three challenges: efficient learning over nonlinear trajectory histories, leveraging intrinsic model signals, and building scalable high-throughput infrastructure. We address these with a multi-level prefix caching mechanism, entropy-based trajectory pruning, and SeamlessFlow architecture.</p>
+                    <p><strong>🎯 Agentic RL Scaling:</strong> Scaling agentic RL hinges on three challenges: efficient learning over nonlinear trajectory histories, leveraging intrinsic model signals, and building scalable high-throughput infrastructure. We address these with a multi-level prefix caching mechanism, entropy-based trajectory pruning, and SeamlessFlow architecture.</p>
                 </div>
             </div>
         </section>
 
         <!-- Open Access -->
-        <section class="hero">
+        <section class="hero open-access-section">
             <div class="container">
                 <h2 class="hero-subtitle">Open Access</h2>
                 <p class="hero-description">
@@ -1684,7 +1811,7 @@ export ANTHROPIC_AUTH_TOKEN=your-dashscope-apikey</code></pre>
                     <div class="hero-description">
                         <!-- Tab Navigation -->
                         <div class="cases-tabs">
-                            <button class="cases-tab active" data-tab="starry-sky">
+                            <button class="cases-tab active" data-tab="starry-sky-panel">
                                 🌟 星空效果
                             </button>
                             <button class="cases-tab" data-tab="fruit-ninja">
@@ -1698,13 +1825,13 @@ export ANTHROPIC_AUTH_TOKEN=your-dashscope-apikey</code></pre>
                         <!-- Tab Content -->
                         <div class="cases-content">
                             <!-- 星空效果 -->
-                            <div class="case-panel active" id="starry-sky">
-                                <iframe src="case-star/star.html"></iframe>
+                            <div class="case-panel active" id="starry-sky-panel">
+                                <iframe src="case-star/star.html" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             </div>
 
                             <!-- 水果忍者 -->
                             <div class="case-panel" id="fruit-ninja">
-                                <iframe src="case-fruit/fruit_ninja.html"></iframe>
+                                <iframe src="case-fruit/fruit_ninja.html" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             </div>
 
                             <!-- 代码重构 -->
@@ -1802,7 +1929,6 @@ export ANTHROPIC_AUTH_TOKEN=your-dashscope-apikey</code></pre>
         <footer class="footer">
             <div class="container">
                 <div class="footer-links">
-                    <a href="https://kuaishou.com" class="footer-link">Kuaishou</a>
                     <a href="https://github.com/kuaishou" class="footer-link">GitHub</a>
                     <a href="#" class="footer-link">Documentation</a>
                     <a href="#" class="footer-link">Community</a>
@@ -1852,51 +1978,11 @@ export ANTHROPIC_AUTH_TOKEN=your-dashscope-apikey</code></pre>
             initializeCharts();
             initializeScrollAnimations();
             initializeCasesTabs();
-            initializeScrollSpy();
+            initializeStarrySky();
         });
 
         // Navigation functionality
         function initializeNavigation() {
-            // FAQ functionality
-            document.querySelectorAll(".faq-question").forEach((question) => {
-                question.addEventListener("click", () => {
-                    const answer = question.nextElementSibling;
-                    const isOpen = answer.classList.contains("show");
-                    
-                    // Close all other FAQs
-                    document.querySelectorAll(".faq-answer").forEach((a) => {
-                        a.classList.remove("show");
-                    });
-                    
-                    // Toggle current FAQ
-                    if (!isOpen) {
-                        answer.classList.add("show");
-                    }
-                });
-            });
-
-            // Nav tabs functionality
-            document.querySelectorAll(".nav-tab").forEach((tab) => {
-                tab.addEventListener("click", () => {
-                    const targetId = tab.getAttribute('data-target');
-                    const targetElement = document.getElementById(targetId);
-                    
-                    if (targetElement) {
-                        // Update active state
-                        document.querySelectorAll(".nav-tab").forEach((t) => t.classList.remove("active"));
-                        tab.classList.add("active");
-                        
-                        // Smooth scroll to target
-                        const headerHeight = document.querySelector('header').offsetHeight;
-                        const targetPosition = targetElement.offsetTop - headerHeight - 20;
-                        
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
 
             // Smooth scrolling for anchor links
             document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -2317,53 +2403,127 @@ export ANTHROPIC_AUTH_TOKEN=your-dashscope-apikey</code></pre>
                     const targetPanel = document.getElementById(targetId);
                     if (targetPanel) {
                         targetPanel.classList.add('active');
+                        
+                        // 如果切换到星空效果Tab，重新初始化星空效果
+                        if (targetId === 'starry-sky-panel') {
+                            setTimeout(() => {
+                                initializeStarrySky();
+                            }, 100);
+                        }
                     }
                 });
             });
         }
 
-        // Scroll spy functionality for nav tabs
-        function initializeScrollSpy() {
-            const navTabs = document.querySelectorAll('.nav-tab');
-            const sections = ['overview', 'features', 'performance', 'cases'];
-            const headerHeight = document.querySelector('header').offsetHeight;
-            
-            function updateActiveTab() {
-                const scrollPosition = window.scrollY + headerHeight + 100;
+
+        // 星空效果实现
+        function initializeStarrySky() {
+            const canvas = document.getElementById('stars-canvas');
+            if (!canvas) return;
+
+            const ctx = canvas.getContext('2d');
+            let stars = [];
+            let animationId;
+
+            // 设置画布大小
+            function resizeCanvas() {
+                const rect = canvas.parentElement.getBoundingClientRect();
+                canvas.width = rect.width;
+                canvas.height = rect.height;
+            }
+
+            // 创建星星
+            function createStars() {
+                stars = [];
+                const numStars = Math.floor((canvas.width * canvas.height) / 8000); // 根据画布大小调整星星数量
                 
-                let currentSection = 'overview';
-                
-                for (let i = sections.length - 1; i >= 0; i--) {
-                    const section = document.getElementById(sections[i]);
-                    if (section && section.offsetTop <= scrollPosition) {
-                        currentSection = sections[i];
-                        break;
-                    }
+                for (let i = 0; i < numStars; i++) {
+                    stars.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        radius: Math.random() * 2 + 0.5,
+                        vx: (Math.random() - 0.5) * 0.5,
+                        vy: (Math.random() - 0.5) * 0.5,
+                        opacity: Math.random() * 0.8 + 0.2,
+                        twinkleSpeed: Math.random() * 0.02 + 0.01
+                    });
                 }
+            }
+
+            // 绘制星星
+            function drawStars() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
                 
-                // Update active tab
-                navTabs.forEach(tab => {
-                    tab.classList.remove('active');
-                    if (tab.getAttribute('data-target') === currentSection) {
-                        tab.classList.add('active');
+                stars.forEach(star => {
+                    // 更新星星位置
+                    star.x += star.vx;
+                    star.y += star.vy;
+                    
+                    // 边界检测
+                    if (star.x < 0) star.x = canvas.width;
+                    if (star.x > canvas.width) star.x = 0;
+                    if (star.y < 0) star.y = canvas.height;
+                    if (star.y > canvas.height) star.y = 0;
+                    
+                    // 闪烁效果
+                    star.opacity += star.twinkleSpeed;
+                    if (star.opacity > 1) {
+                        star.opacity = 1;
+                        star.twinkleSpeed = -star.twinkleSpeed;
+                    } else if (star.opacity < 0.2) {
+                        star.opacity = 0.2;
+                        star.twinkleSpeed = -star.twinkleSpeed;
+                    }
+                    
+                    // 绘制星星
+                    ctx.beginPath();
+                    ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+                    ctx.fill();
+                    
+                    // 添加光晕效果
+                    if (star.radius > 1) {
+                        const gradient = ctx.createRadialGradient(star.x, star.y, 0, star.x, star.y, star.radius * 3);
+                        gradient.addColorStop(0, `rgba(255, 255, 255, ${star.opacity * 0.3})`);
+                        gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+                        ctx.fillStyle = gradient;
+                        ctx.beginPath();
+                        ctx.arc(star.x, star.y, star.radius * 3, 0, Math.PI * 2);
+                        ctx.fill();
                     }
                 });
             }
-            
-            // Throttle scroll events for better performance
-            let ticking = false;
-            function onScroll() {
-                if (!ticking) {
-                    requestAnimationFrame(() => {
-                        updateActiveTab();
-                        ticking = false;
-                    });
-                    ticking = true;
-                }
+
+            // 动画循环
+            function animate() {
+                drawStars();
+                animationId = requestAnimationFrame(animate);
             }
-            
-            window.addEventListener('scroll', onScroll);
-            updateActiveTab(); // Initial call
+
+            // 初始化
+            function init() {
+                resizeCanvas();
+                createStars();
+                animate();
+            }
+
+            // 窗口大小改变时重新初始化
+            window.addEventListener('resize', () => {
+                resizeCanvas();
+                createStars();
+            });
+
+            // 页面可见性改变时暂停/恢复动画
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    cancelAnimationFrame(animationId);
+                } else {
+                    animate();
+                }
+            });
+
+            // 开始动画
+            init();
         }
     </script>
 </body>
