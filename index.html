@@ -11,7 +11,7 @@
         href="https://s16-def.ap4r.com/kos/s101/nlav112218/kwaipilot-oversea/icons/favicon.svg">
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
-    <title>Introducing KAT-Dev, KAT-Coder: Advancing Code Intelligence through Scalable Agentic RL</title>
+    <title>Introducing KAT-Dev-32B, KAT-Coder: Advancing Code Intelligence through Scalable Agentic RL</title>
 
     <style>
         :root {
@@ -323,7 +323,7 @@
             margin-top: 0;
         }
 
-        /* KAT-Dev & KAT-Coder Module Styles */
+        /* KAT-Dev-32B & KAT-Coder Module Styles */
         .kat-module {
             padding: 0;
             position: relative;
@@ -737,6 +737,19 @@
             max-width: 800px;
         }
 
+        .case-panel video {
+            width: 100%;
+            height: 70vh;
+            min-height: 400px;
+            max-height: 70vh;
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            background: #000;
+            max-width: 800px;
+            object-fit: contain;
+        }
+
         .case-panel .case-image {
             text-align: center;
             margin: 20px 0;
@@ -830,6 +843,15 @@
                 max-width: 400px;
             }
 
+            .case-panel video {
+                height: 60vh;
+                min-height: 300px;
+                max-height: 60vh;
+                width: 100%;
+                max-width: 400px;
+                object-fit: contain;
+            }
+
             .cases-content {
                 max-width: 400px;
                 min-height: 80vh;
@@ -860,6 +882,15 @@
                 height: 100vh !important;
                 min-height: 100vh !important;
                 max-height: 100vh !important;
+            }
+
+            .case-panel video {
+                max-width: 800px !important;
+                width: 800px !important;
+                height: 70vh !important;
+                min-height: 400px !important;
+                max-height: 70vh !important;
+                object-fit: contain;
             }
 
             .case-panel .case-image img {
@@ -1770,48 +1801,7 @@
 </head>
 
 <body>
-    <div id="app">
-        <!-- Header -->
-        <header class="header">
-            <div class="container">
-                <nav class="nav">
-                    <div class="logo">
-                        <svg width="24" height="24" viewBox="0 0 69 68" fill="none" xmlns="http://www.w3.org/2000/svg"
-                            style="margin-right: 8px">
-                            <g clip-path="url(#clip0_header)">
-                                <path
-                                    d="M34.1065 0C15.269 0 0 15.269 0 34.1064C0 43.3512 3.67932 51.7354 9.6526 57.8796C12.3993 56.944 17.653 54.3142 21.2573 47.3004C24.8167 40.3826 23.0205 39.492 23.8781 35.4618C25.1525 29.4646 29.3716 22.3308 30.3132 20.9814C31.2577 19.632 33.0809 17.9408 34.2504 18.0638C35.3449 18.1807 36.2805 19.5151 37.0181 21.1524C37.7408 22.7536 38.4425 24.8647 38.4425 24.8647C38.4425 24.8647 42.1248 24.9066 44.8805 27.5454C47.6093 30.1572 46.4998 34.5143 47.2794 35.3839C48.0591 36.2505 49.3395 36.4784 49.9092 37.5789C50.479 38.6794 50.0322 41.9059 47.1955 44.1998C44.9765 45.996 41.4261 46.5688 41.4261 46.5688C41.4261 46.5688 39.9388 47.1985 39.1472 48.8087C38.4155 50.2991 38.4305 52.4551 39.6839 54.5391C43.1923 60.3625 40.1817 65.3582 37.9027 68C54.95 66.1109 68.2099 51.6574 68.2099 34.1064C68.2129 15.269 52.9409 0 34.1065 0Z"
-                                    fill="url(#paint0_linear_header)" />
-                                <path
-                                    d="M49.0366 11.6287C57.3938 11.6827 63.6159 16.3126 66.6236 23.5843C62.1586 9.94947 49.3334 0.0989605 34.2023 0.0989605C15.3679 0.0989605 0.098877 15.368 0.098877 34.2024C0.098877 43.4472 3.7782 51.8314 9.75148 57.9756C13.5447 57.1629 17.8238 54.911 21.8 48.1041C25.0565 42.5266 23.7131 39.6689 24.8466 34.0975C26.3279 26.8378 29.9683 21.2543 31.9983 19.0413C36.5503 14.4594 41.8788 11.5837 49.0366 11.6287Z"
-                                    fill="url(#paint1_linear_header)" />
-                            </g>
-                            <defs>
-                                <linearGradient id="paint0_linear_header" x1="32.4025" y1="13.4252" x2="36.3993"
-                                    y2="62.0534" gradientUnits="userSpaceOnUse">
-                                    <stop offset="0.15" stop-color="#0047FF" />
-                                    <stop offset="0.38" stop-color="#087DFF" />
-                                    <stop offset="0.57" stop-color="#1DACF8" />
-                                    <stop offset="1" stop-color="#32F3F3" />
-                                </linearGradient>
-                                <linearGradient id="paint1_linear_header" x1="40.1865" y1="11.9816" x2="16.2412"
-                                    y2="53.3259" gradientUnits="userSpaceOnUse">
-                                    <stop stop-color="#31F2F2" />
-                                    <stop offset="0.43" stop-color="#31D8F2" />
-                                    <stop offset="0.7" stop-color="#0DB3FF" />
-                                    <stop offset="1" stop-color="#007CEF" />
-                                </linearGradient>
-                                <clipPath id="clip0_header">
-                                    <rect width="68.2129" height="68" fill="white" />
-                                </clipPath>
-                            </defs>
-                        </svg>
-                        KAT Team
-                    </div>
-                </nav>
-            </div>
-        </header>
-
+    <div id="app">        
         <!-- Hero Section -->
         <section class="hero" id="overview">
             <!-- 星空背景 -->
@@ -1850,25 +1840,31 @@
                             </clipPath>
                         </defs>
                     </svg>
-                    <p>Introducing KAT-Dev, KAT-Coder: </p>
+                    <p>Introducing KAT-Dev-32B, KAT-Coder: </p>
                     <p>Advancing Code Intelligence through Scalable Agentic RL</p>
-                </h1>
+                </h1>                
+            </div>
+        </section>
+
+        <!-- Highlights -->
+        <section class="hero">
+            <div class="container">
                 <p class="hero-description">
                     Today, we're thrilled to announce two <strong class="highlight-groundbreaking">🚀 groundbreaking
-                        models</strong> in our KAT series: <span class="highlight-model">KAT-Dev</span> and <span
+                        models</strong> in our KAT series: <span class="highlight-model">KAT-Dev-32B</span> and <span
                         class="highlight-model">KAT-Coder</span> — representing <em class="highlight-excellence">✨
                         accessible excellence</em> and <em class="highlight-performance">⚡ ultimate performance</em> in
-                    code intelligence. We are excited to introduce <span class="highlight-model">KAT-Dev</span> - our
+                    code intelligence. We are excited to introduce <span class="highlight-model">KAT-Dev-32B</span> - our
                     new <strong class="highlight-opensource">🔓 open-source 32B-parameter model</strong> for software
-                    engineering tasks. Among all open-source models with different scales, KAT-Dev achieves comparable
+                    engineering tasks. Among all open-source models with different scales, KAT-Dev-32B achieves comparable
                     performance and <span class="highlight-rank">🏆 ranks 3rd</span> on SWE-Bench Verified with <span
-                        class="highlight-metric">65.0%</span> resolved. Meanwhile, the most powerful variant: <span
+                        class="highlight-metric">62.6%</span> resolved. Meanwhile, the most powerful variant: <span
                         class="highlight-model">KAT-Coder</span>, achieves <span class="highlight-metric">72.2%</span>
                     performance and <span class="highlight-achievement">🎯 resets a new state-of-the-art result</span>
                     on SWE-Bench Verified.
                 </p>
             </div>
-        </section>
+        </section>        
 
         <!-- Benchmark Charts -->
         <section class="hero" id="performance">
@@ -2024,7 +2020,7 @@
         <div class="container">
             <h2 class="hero-subtitle">Key Contributions</h2>
             <div class="hero-description">
-                <p>Our KAT-Dev and KAT-Coder are optimized via several stages of training, including a mid-training
+                <p>Our KAT-Dev-32B and KAT-Coder are optimized via several stages of training, including a mid-training
                     stage, supervised fine-tuning (SFT) & reinforcement fine-tuning (RFT) stage and an large-scale
                     agentic reinforcement learning (RL) stage. In summary, our contributions include:</p>
 
@@ -2051,7 +2047,7 @@
         <div class="container">
             <h2 class="hero-subtitle">Open Access</h2>
             <p class="hero-description">
-                KAT-Dev is released to the community for further research and development. You can also get accessed to
+                KAT-Dev-32B is released to the community for further research and development. You can also get accessed to
                 our strongest variant KAT-Coder by simply requesting an API key on <a
                     href="https://console.streamlake.com/console/wanqing/api-key" target="_blank">StreamLake</a>
                 platform and install Claude Code to start coding, with a detailed technical report coming soon.
@@ -2059,11 +2055,11 @@
         </div>
     </section>
 
-    <!-- KAT-Dev & KAT-Coder -->
+    <!-- KAT-Dev-32B & KAT-Coder -->
     <section class="hero" id="features">
         <div class="container">
             <div class="kat-module">
-                <h2 class="hero-subtitle">KAT-Dev & KAT-Coder</h2>
+                <h2 class="hero-subtitle">KAT-Dev-32B & KAT-Coder</h2>
 
                 <div class="hero-description">
                     <div class="kat-training-section">
@@ -2145,7 +2141,7 @@
             </p>
             <figure style="margin: 40px 0; text-align: center;">
                 <img src="case-pic/pic-1.png" alt="Reinforcement Finetuning Process"
-                    style="max-width: 800px; width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); background: white; padding: 20px;" />
+                    style="max-width: 800px; width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); " />
             </figure>
 
             <div class="hero-description">
@@ -2282,10 +2278,10 @@
 
                     <div class="code-section">
                         <h3>Claude Code Proxy API</h3>
-                        <p>Configure your environment variables to use KAT-Dev through the proxy API:</p>
+                        <p>Configure your environment variables to use KAT-Dev-32B through the proxy API:</p>
 
                         <div class="code-block">
-                            <pre><code>export ANTHROPIC_BASE_URL=https://dashscope-intl.aliyuncs.com/api/v2/apps/claude-code-proxy # 此处替换域名
+                            <pre><code>export ANTHROPIC_BASE_URL=XXX # 此处替换域名
 
 export ANTHROPIC_AUTH_TOKEN=your-dashscope-apikey</code></pre>
                         </div>
@@ -2319,18 +2315,18 @@ export ANTHROPIC_AUTH_TOKEN=your-dashscope-apikey</code></pre>
 
                     <!-- Tab Content -->
                     <div class="cases-content">
-                        <!-- 星空效果 -->
+                        <!-- 星空视频 -->
                         <div class="case-panel active" id="starry-sky-panel">
-                            <iframe src="case-star/star.html"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
+                            <video controls autoplay muted loop>
+                                <source src="case-pic/Stary_Sky.mp4" type="video/mp4">
+                            </video>
                         </div>
 
-                        <!-- 水果忍者 -->
+                        <!-- 水果忍者视频 -->
                         <div class="case-panel" id="fruit-ninja">
-                            <iframe src="case-fruit/fruit_ninja.html"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
+                            <video controls autoplay muted loop>
+                                <source src="case-pic/Fruit_Ninja.mp4" type="video/mp4">
+                            </video>
                         </div>
 
                         <!-- 代码重构 -->
@@ -2424,6 +2420,11 @@ export ANTHROPIC_AUTH_TOKEN=your-dashscope-apikey</code></pre>
                             <h4><span class="icon">🤝</span> Collaborative Coding</h4>
                             <p>Exploring multi-agent systems where KAT models can work together on complex software
                                 projects, enabling unprecedented collaboration.</p>
+                        </div>
+
+                        <div class="future-card">
+                            <h4><span class="icon">🧠</span> Multimodal Code Intelligence</h4>
+                            <p>Integrating visual understanding capabilities to process architecture diagrams, UI designs, debugging screenshots, and documentation images alongside code, making the development process more intuitive and efficient.</p>
                         </div>
                     </div>
                 </div>
@@ -2598,7 +2599,7 @@ export ANTHROPIC_AUTH_TOKEN=your-dashscope-apikey</code></pre>
             { name: "Qwen3-Coder", x: 480, y: 69.6, category: "qwen" },
             { name: "GLM-4.5", x: 355, y: 64.2, category: "glm" },
             { name: "Devstral-Small-2507", x: 24, y: 53.6, category: "devstral" },
-            { name: "KAT-Dev", x: 32, y: 65.0, category: "kat" },
+            { name: "KAT-Dev-32B", x: 32, y: 62.6, category: "kat" },
         ];
 
         function createScatterChart() {
@@ -2770,7 +2771,7 @@ export ANTHROPIC_AUTH_TOKEN=your-dashscope-apikey</code></pre>
                            </defs>
                          </svg>`;
                         break;
-                    case "KAT-Dev":
+                    case "KAT-Dev-32B":
                         iconSVG = `<svg width="24" height="24" viewBox="0 0 69 68" xmlns="http://www.w3.org/2000/svg">
                            <g clip-path="url(#clip0_kat)">
                              <path d="M34.11 0C15.27 0 0 15.27 0 34.11C0 43.35 3.68 51.74 9.65 57.88C12.4 56.94 17.65 54.31 21.26 47.3C24.82 40.38 23.02 39.49 23.88 35.46C25.15 29.46 29.37 22.33 30.31 20.98C31.26 19.63 33.08 17.94 34.25 18.06C35.34 18.18 36.28 19.52 37.02 21.15C37.74 22.75 38.44 24.86 38.44 24.86C38.44 24.86 42.12 24.91 44.88 27.55C47.61 30.16 46.5 34.51 47.28 35.38C48.06 36.25 49.34 36.48 49.91 37.58C50.48 38.68 50.03 41.91 47.2 44.2C44.98 46 41.43 46.57 41.43 46.57C41.43 46.57 39.94 47.2 39.15 48.81C38.42 50.3 38.43 52.46 39.68 54.54C43.19 60.36 40.18 65.36 37.9 68C54.95 66.11 68.21 51.66 68.21 34.11C68.21 15.27 52.94 0 34.11 0Z" fill="url(#paint0_linear_kat)"/>
