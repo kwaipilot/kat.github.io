@@ -1962,7 +1962,7 @@
                                                 </defs>
                                             </svg>
                                         </div>
-                                        <div class="bar-value">66.0</div>
+                                        <div class="bar-value">66.0*</div>
                                     </div>
                                     <div class="model-name">OpenAI o3</div>
                                 </div>
@@ -2531,8 +2531,8 @@ export ANTHROPIC_AUTH_TOKEN=your-dashscope-apikey</code></pre>
                     const value = bar.getAttribute("data-value");
                     const modelName = bar.parentElement.querySelector(".model-name").textContent;
 
-                    tooltip.textContent = modelName === "GPT-5"
-                        ? `GPT-5: ${value}% (On 500 verified tasks)`
+                    tooltip.textContent = modelName === "GPT-5" || modelName === "OpenAI o3"
+                        ? `${modelName}: ${value}% (On 500 verified tasks)`
                         : `${modelName}: ${value}%`;
                     tooltip.style.opacity = "1";
                 });
