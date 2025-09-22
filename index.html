@@ -18,6 +18,10 @@
     <!-- 预加载关键资源 -->
     <link rel="preload" href="case-pic/background.svg" as="image" />
     <link rel="preload" href="case-pic/pic.png" as="image" />
+    <!-- 预加载关键图表图片 -->
+    <link rel="preload" href="case-pic/chart_group_1.png" as="image" />
+    <link rel="preload" href="case-pic/chart_group_2.png" as="image" />
+    <link rel="preload" href="case-pic/chart_group_3.png" as="image" />
 
     <style>
         :root {
@@ -3196,7 +3200,7 @@ export ANTHROPIC_AUTH_TOKEN=WQ_API_KEY</code></pre>
 
         function initializePerformanceOptimizations() {
             // 预加载关键图片
-            const criticalImages = ["case-pic/pic.png"];
+            const criticalImages = ["case-pic/pic.png", "case-pic/chart_group_1.png", "case-pic/chart_group_2.png", "case-pic/chart_group_3.png"];
 
             criticalImages.forEach((src) => {
                 const link = document.createElement("link");
