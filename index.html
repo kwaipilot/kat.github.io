@@ -246,6 +246,11 @@
             margin-bottom: 80px;
         }
 
+        /* 默认不换行（大屏幕） */
+        .title-intro::after {
+            display: none;
+        }
+
         .hero-subtitle {
             text-align: center;
             font-family: "SF Pro Display";
@@ -1739,6 +1744,14 @@
                 line-height: 180%;
             }
 
+            /* 移动端标题换行控制 */
+            .title-intro::after {
+                content: "";
+                display: block;
+                width: 100%;
+                height: 0;
+            }
+
             .hero-subtitle {
                 font-size: clamp(18px, 5vw, 36px);
                 margin-bottom: 12px;
@@ -1914,6 +1927,14 @@
             .hero-title {
                 font-size: clamp(18px, 10vw, 24px);
                 line-height: 180%;
+            }
+
+            /* 更小屏幕的标题换行控制 */
+            .title-intro::after {
+                content: "";
+                display: block;
+                width: 100%;
+                height: 0;
             }
 
             .hero-subtitle {
@@ -2242,10 +2263,10 @@
             </div>
             <h1 class="hero-title">
                 <p>
-                    Introducing <span class="highlight-model">KAT-Dev-32B</span>,
+                    <span class="title-intro">Introducing</span> <span class="highlight-model">KAT-Dev-32B</span>,
                     <span class="highlight-model">KAT-Coder</span>:
                 </p>
-                <p>Advancing Code Intelligence through Scalable Agentic RL</p>
+                <p><span class="title-intro">Advancing Code Intelligence</span> through Scalable Agentic RL</p>
             </h1>
         </section>
 
