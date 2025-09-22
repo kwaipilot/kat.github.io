@@ -16,6 +16,7 @@
     </title>
 
     <!-- 预加载关键资源 -->
+    <link rel="preload" href="case-pic/background.svg" as="image" />
     <link rel="preload" href="case-pic/pic.png" as="image" />
 
     <style>
@@ -677,7 +678,7 @@
             font-weight: 600;
             line-height: 24px;
             /* 133.333% */
-            margin-bottom: 12px;
+            margin-bottom: 24px;
         }
 
         /* Code with KAT-Coder Module Styles */
@@ -1032,6 +1033,7 @@
         .cases-tabs-container {
             margin-top: 48px;
             text-align: center;
+            margin-bottom: 24px;
         }
 
         .cases-tabs {
@@ -1101,9 +1103,6 @@
 
         .case-panel img {
             width: 100%;
-            height: 50vh;
-            min-height: 400px;
-            max-height: 50vh;
             border: none;
             border-radius: 16px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
@@ -1119,7 +1118,7 @@
         .case-panel .case-image img {
             max-width: 800px;
             width: 100%;
-            height: auto;
+            height: 400px;
             border-radius: 16px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             object-fit: contain;
@@ -1127,13 +1126,18 @@
 
         /* 代码重构case特殊样式 */
         .case-panel#code-refactor {
-            height: auto;
-            min-height: 100vh;
-            padding: 20px;
+            height: 400px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 0;
         }
 
         .case-panel#code-refactor .case-image {
             margin: 0;
+            height: auto;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
         }
 
         .case-panel#code-refactor .case-image img {
@@ -1191,13 +1195,20 @@
         /* Responsive design for tabs */
         @media (max-width: 768px) {
             .cases-tabs {
-                flex-wrap: wrap;
+                flex-wrap: nowrap;
+                gap: 4px;
+                padding: 6px;
             }
 
             .cases-tab {
                 flex: 1;
-                min-width: auto;
+                min-width: 100px;
                 text-align: center;
+                font-size: 12px;
+                padding: 8px 6px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
 
             .case-panel iframe {
@@ -1209,21 +1220,23 @@
             }
 
             .case-panel img {
-                height: 50vh;
-                min-height: 300px;
-                max-height: 50vh;
                 width: 100%;
                 max-width: 400px;
                 object-fit: contain;
             }
 
             .case-panel .case-image img {
-                height: 50vh !important;
-                min-height: 300px !important;
-                max-height: 50vh !important;
+                height: 400px !important;
                 width: 100% !important;
                 max-width: 400px !important;
                 object-fit: contain !important;
+            }
+
+            .case-panel#code-refactor {
+                height: 200px;
+                overflow-y: auto;
+                overflow-x: hidden;
+                padding: 0;
             }
 
             .case-panel#code-refactor .case-image img {
@@ -1237,17 +1250,11 @@
 
             .cases-content {
                 max-width: 400px;
-                min-height: 80vh;
-                max-height: 100vh;
                 overflow-y: auto;
                 overflow-x: hidden;
             }
 
-            .case-panel#code-refactor {
-                height: auto;
-                min-height: 80vh;
-                padding: 15px;
-            }
+
         }
 
         /* 确保桌面端User Cases保持800px宽度 */
@@ -1270,37 +1277,31 @@
             .case-panel img {
                 max-width: 800px !important;
                 width: 800px !important;
-                height: 50vh !important;
-                min-height: 400px !important;
-                max-height: 50vh !important;
+                height: 400px !important;
                 object-fit: contain;
             }
 
             .case-panel .case-image img {
                 max-width: 350px !important;
                 width: 350px !important;
-                height: 50vh !important;
-                min-height: 400px !important;
-                max-height: 50vh !important;
+                height: 400px !important;
                 object-fit: contain !important;
             }
 
-            .case-panel#code-refactor .case-image img {
-                height: auto !important;
-                max-height: none !important;
-                min-height: auto !important;
-                width: 350px !important;
-                max-width: 350px !important;
-                object-fit: contain !important;
-            }
+
 
             .case-panel .case-image img {
                 max-width: 800px !important;
                 width: 800px !important;
-                height: 50vh !important;
-                min-height: 400px !important;
-                max-height: 50vh !important;
+                height: 400px !important;
                 object-fit: contain !important;
+            }
+
+            .case-panel#code-refactor {
+                height: 400px !important;
+                overflow-y: auto !important;
+                overflow-x: hidden !important;
+                padding: 0 !important;
             }
 
             .case-panel#code-refactor .case-image img {
@@ -1312,11 +1313,9 @@
                 object-fit: contain !important;
             }
 
-            .case-panel#code-refactor {
-                height: auto !important;
-                min-height: 100vh !important;
-                padding: 20px !important;
-            }
+
+
+
         }
 
         .kat-task-card ul {
@@ -1415,7 +1414,7 @@
         }
 
         a[target="_blank"]:after {
-            content: "↗";
+            content: "";
             font-size: 0.8em;
             margin-left: 4px;
             opacity: 0.7;
@@ -1841,6 +1840,25 @@
                 font-size: 11px;
                 padding: 4px 6px;
                 min-height: 28px;
+            }
+
+            /* 更小屏幕的cases-tabs优化 */
+            .cases-tabs {
+                gap: 2px;
+                padding: 4px;
+            }
+
+            .cases-tab {
+                font-size: 10px;
+                padding: 6px 4px;
+            }
+
+            /* 480px屏幕下的code-refactor高度保持一致 */
+            .case-panel#code-refactor {
+                height: 200px;
+                overflow-y: auto;
+                overflow-x: hidden;
+                padding: 0;
             }
 
             .hero {
@@ -3157,6 +3175,17 @@ export ANTHROPIC_AUTH_TOKEN=WQ_API_KEY</code></pre>
                 link.href = src;
                 document.head.appendChild(link);
             });
+
+            // 优化背景SVG加载
+            const heroBackground = document.querySelector('.hero-background');
+            if (heroBackground) {
+                // 添加加载完成的类名以便后续优化
+                const bgImage = new Image();
+                bgImage.onload = function() {
+                    heroBackground.classList.add('loaded');
+                };
+                bgImage.src = './case-pic/background.svg';
+            }
 
             // 优化滚动性能
             let ticking = false;
