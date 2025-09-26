@@ -16,12 +16,12 @@
     </title>
 
     <!-- 预加载关键资源 -->
-    <link rel="preload" href="case-pic/background.svg" as="image" />
-    <link rel="preload" href="case-pic/pic.png" as="image" />
+    <link rel="preload" href="https://h2.static.yximgs.com/kcdn/cdn-kcdn112115/kat/background.svg" as="image" />
+    <link rel="preload" href="https://h2.static.yximgs.com/kcdn/cdn-kcdn112115/kat/pic.png" as="image" />
     <!-- 预加载关键图表图片 -->
-    <link rel="preload" href="case-pic/chart_group_1.png" as="image" />
-    <link rel="preload" href="case-pic/chart_group_2.png" as="image" />
-    <link rel="preload" href="case-pic/chart_group_3.png" as="image" />
+    <link rel="preload" href="https://h2.static.yximgs.com/kcdn/cdn-kcdn112115/kat/chart_group_1.png" as="image" />
+    <link rel="preload" href="https://h2.static.yximgs.com/kcdn/cdn-kcdn112115/kat/chart_group_2.png" as="image" />
+    <link rel="preload" href="https://h2.static.yximgs.com/kcdn/cdn-kcdn112115/kat/chart_group_3.png" as="image" />
 
     <style>
         :root {
@@ -2314,7 +2314,7 @@
         <section class="hero" id="overview">
             <!-- 背景图片 -->
             <div class="hero-background">
-                <img src="./case-pic/background.svg" alt="Background" />
+                <img src="https://h2.static.yximgs.com/kcdn/cdn-kcdn112115/kat/background.svg" alt="Background" />
             </div>
             <h1 class="hero-title">
                 <p>
@@ -2346,7 +2346,7 @@
                     <span class="highlight-text">ranks 5th</span> among all open-source models with different scales.
                 </p>
                 <div class="chart-container">
-                    <img src="./case-pic/chart_group_1.png" alt="Performance Chart" class="chart-image" />
+                    <img src="https://h2.static.yximgs.com/kcdn/cdn-kcdn112115/kat/chart_group_1.png" alt="Performance Chart" class="chart-image" />
                 </div>
                 <p class="hero-description" style="margin-top: 48px; margin-bottom: 20px;">
                     Meanwhile, the most powerful variant:
@@ -2356,7 +2356,7 @@
                     <span class="highlight-text">SWE-Bench</span> Verified.
                 </p>
                 <div class="chart-container">
-                    <img src="./case-pic/chart_group_2.png" alt="Performance Chart 2" class="chart-image" />
+                    <img src="https://h2.static.yximgs.com/kcdn/cdn-kcdn112115/kat/chart_group_2.png" alt="Performance Chart 2" class="chart-image" />
                 </div>
         </section>
 
@@ -2650,7 +2650,7 @@
                             </p>
 
                             <figure style="margin-bottom: 24px; text-align: center">
-                                <img src="case-pic/pic.png" alt="Reinforcement Finetuning Process"
+                                <img src="https://h2.static.yximgs.com/kcdn/cdn-kcdn112115/kat/pic.png" alt="Reinforcement Finetuning Process"
                                     style="max-width: 800px;width: 100%;height: auto;border-radius: 8px;box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);" />
                             </figure>
 
@@ -2739,7 +2739,7 @@
                                 and sustaining high-throughput training.
                             </p>
                             <figure style="margin-bottom: 24px; text-align: center">
-                                <img src="case-pic/pic-3.png" alt="Agentic RL Scaling Architecture"
+                                <img src="https://h2.static.yximgs.com/kcdn/cdn-kcdn112115/kat/pic-3.png" alt="Agentic RL Scaling Architecture"
                                     style="
                       max-width: 800px;
                       width: 100%;
@@ -2791,7 +2791,7 @@
                             </p>
 
                             <div class="chart-container">
-                                <img src="./case-pic/chart_group_3.png" alt="Performance Chart 3" class="chart-image">
+                                <img src="https://h2.static.yximgs.com/kcdn/cdn-kcdn112115/kat/chart_group_3.png" alt="Performance Chart 3" class="chart-image">
                             </div>
                         </div>
                     </div>
@@ -2891,18 +2891,18 @@ export ANTHROPIC_AUTH_TOKEN=WQ_API_KEY</code></pre>
                         <div class="cases-content">
                             <!-- 星空效果 -->
                             <div class="case-panel active" id="starry-sky-panel">
-                                <img src="case-pic/Stary.gif" alt="星空效果演示" />
+                                <img src="https://h2.static.yximgs.com/kcdn/cdn-kcdn112115/kat/Stary.gif" alt="星空效果演示" />
                             </div>
 
                             <!-- 水果忍者效果 -->
                             <div class="case-panel" id="fruit-ninja">
-                                <img src="case-pic/Ninja.gif" alt="水果忍者效果演示" />
+                                <img src="https://h2.static.yximgs.com/kcdn/cdn-kcdn112115/kat/Ninja.gif" alt="水果忍者效果演示" />
                             </div>
 
                             <!-- 代码重构 -->
                             <div class="case-panel" id="code-refactor">
                                 <div class="case-image">
-                                    <img src="case-pic/pic-4.png" alt="代码重构案例展示" />
+                                    <img src="https://h2.static.yximgs.com/kcdn/cdn-kcdn112115/kat/pic-4.png" alt="代码重构案例展示" />
                                 </div>
                             </div>
                         </div>
@@ -3158,7 +3158,6 @@ export ANTHROPIC_AUTH_TOKEN=WQ_API_KEY</code></pre>
         document.addEventListener("DOMContentLoaded", function () {
             initializeNavigation();
             initializeCasesTabs();
-            initializePerformanceOptimizations();
         });
 
         function initializeNavigation() {
@@ -3195,62 +3194,6 @@ export ANTHROPIC_AUTH_TOKEN=WQ_API_KEY</code></pre>
                         targetPanel.classList.add("active");
                     }
                 });
-            });
-        }
-
-        function initializePerformanceOptimizations() {
-            // 预加载关键图片
-            const criticalImages = ["case-pic/pic.png", "case-pic/chart_group_1.png", "case-pic/chart_group_2.png", "case-pic/chart_group_3.png"];
-
-            criticalImages.forEach((src) => {
-                const link = document.createElement("link");
-                link.rel = "preload";
-                link.as = "image";
-                link.href = src;
-                document.head.appendChild(link);
-            });
-
-            // 优化背景SVG加载
-            const heroBackground = document.querySelector('.hero-background');
-            if (heroBackground) {
-                // 添加加载完成的类名以便后续优化
-                const bgImage = new Image();
-                bgImage.onload = function() {
-                    heroBackground.classList.add('loaded');
-                };
-                bgImage.src = './case-pic/background.svg';
-            }
-
-            // 优化滚动性能
-            let ticking = false;
-            function updateOnScroll() {
-                // 这里可以添加滚动相关的性能优化
-                ticking = false;
-            }
-
-            function requestScrollUpdate() {
-                if (!ticking) {
-                    requestAnimationFrame(updateOnScroll);
-                    ticking = true;
-                }
-            }
-
-            window.addEventListener("scroll", requestScrollUpdate, {
-                passive: true,
-            });
-
-
-            // 资源预加载
-            window.addEventListener("load", function () {
-                // 预加载下一页可能需要的资源
-                const nextImages = ["case-pic/pic-3.png", "case-pic/pic-4.png"];
-
-                setTimeout(() => {
-                    nextImages.forEach((src) => {
-                        const img = new Image();
-                        img.src = src;
-                    });
-                }, 1000);
             });
         }
 
